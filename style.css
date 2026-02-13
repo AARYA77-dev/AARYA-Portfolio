@@ -145,10 +145,6 @@ h1 span {
     transform: translate(-50%, -50%);
 }
 
-.digit {
-    padding-top: 1rem;
-}
-
 .count .digit h1 {
     font-size: clamp(6rem, 15vw, 15rem);
 }
@@ -386,6 +382,38 @@ body.dark .moon {
     font-weight: bold;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+
+    .nav {
+        padding: 10px 14px;
+        border-radius: 12px;
+    }
+
+    .logo {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: nowrap;
+    }
+
+    .menu a {
+        font-size: 14px;
+        margin-left: 0;
+        white-space: nowrap;
+    }
+
+    .resume-btn {
+        padding: 6px 14px;
+        font-size: 14px;
+    }
+}
+
+
 @media (max-width: 768px) {
 
     .nav {
@@ -394,20 +422,20 @@ body.dark .moon {
     }
 
     .logo {
-        font-size: 10px;
+        font-size: 8px;
         white-space: nowrap;
     }
 
     .menu {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 7px;
         flex-wrap: nowrap;
     }
 
     .menu a {
         font-size: 7px;
-        margin-left: 0;
+        margin-left: 1px;
         white-space: nowrap;
     }
 
@@ -449,9 +477,9 @@ body.dark .moon {
 
 @media (max-width: 900px) {
 
-    .hero-card {
-        width: 380px;
-    }
+    /* .hero-card {
+        width: 40vh;
+    } */
 
     .hero {
         flex-direction: column-reverse;
@@ -573,7 +601,7 @@ body.dark .animated-text span::after {
 /* title */
 .title {
     font-family: monospace;
-    font-size: clamp(28px, 5vw, 42px);
+    font-size: clamp(24px, 5vw, 42px);
     margin-bottom: 20px;
     color: var(--primary-blue);
 }
@@ -665,6 +693,13 @@ body.dark .image-ring:hover {
     border: 4px solid #0a1020;
 }
 
+@media (max-width: 500px) {
+    .image-ring {
+        width: 280px;
+        height: 280px;
+    }
+}
+
 
 /* --- SKILLS SECTION --- */
 
@@ -716,6 +751,7 @@ body.dark .image-ring:hover {
     position: relative;
     width: 450px;
     height: 450px;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -753,8 +789,19 @@ body.dark .image-ring:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* --i is the index of the skill, --radius is the distance from center */
     transform: translate(-50%, -50%) rotate(calc(var(--i) * 33deg)) translateY(-190px);
+}
+
+.skill-icon {
+    width: 32px;
+    height: 32px;
+    transform: rotate(calc(var(--i) * -33deg));
+}
+
+@media (max-width: 768px) {
+    .skill-icon {
+        transform: rotate(calc(var(--i) * -45deg));
+    }
 }
 
 .planet {
@@ -772,12 +819,6 @@ body.dark .image-ring:hover {
 
 body.dark .planet {
     background: #111827;
-}
-
-.skill-icon {
-    width: 32px;
-    height: 32px;
-    transform: rotate(calc(var(--i) * -33deg));
 }
 
 @keyframes orbit-spin {
@@ -820,13 +861,6 @@ body.dark .planet {
     .skill-icon {
         width: 24px;
         height: 24px;
-    }
-}
-
-@media (max-width: 500px) {
-    .image-ring {
-        width: 280px;
-        height: 280px;
     }
 }
 
