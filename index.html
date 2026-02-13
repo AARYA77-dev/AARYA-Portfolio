@@ -55,7 +55,8 @@
             <a class="navlink" onclick="scrollToAbout()">0.2 About = () =></a>
             <a class="navlink" onclick="scrollToSkills()">0.3 My Skills = () =></a>
             <a class="navlink" href="/contact.html">0.4 Contact = () =></a>
-            <a href="https://docs.google.com/document/d/17CNq7mW7Ndj4UTql05LIH7kmm-UEo9Zb8M405Zdk1UE/edit?tab=t.0" target="_blank" class="resume-btn">RESUME</a>
+            <a href="https://docs.google.com/document/d/17CNq7mW7Ndj4UTql05LIH7kmm-UEo9Zb8M405Zdk1UE/edit?tab=t.0"
+                target="_blank" class="resume-btn">RESUME</a>
         </div>
     </nav>
     <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
@@ -100,8 +101,7 @@
                         to do things. Fan of Gaming esports, outdoor activities and Web series.
                     </p>
                 </div>
-                    <img  src="/legoImage.jpg"
-                        alt="About Image" width="200px" class="about-img">
+                <img src="/legoImage.jpg" alt="About Image" width="200px" class="about-img">
             </div>
         </div>
         <div class="card now">
@@ -261,7 +261,8 @@
                 </div>
             </div>
         </div>
-        <a class="contact-btn" href="/project.html">More Projects <i style="margin: auto;" class="fa-solid fa-arrow-right"></i></a>
+        <a class="contact-btn" href="/project.html">More Projects <i style="margin: auto;"
+                class="fa-solid fa-arrow-right"></i></a>
     </section>
     <section>
         <div class="card contact">
@@ -293,124 +294,124 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 <script>
-// const hasAnimated = sessionStorage.getItem("homeAnimated");
+    const hasAnimated = sessionStorage.getItem("homeAnimated");
 
-// if (!hasAnimated) {
-    // runHomeAnimation();
-    // sessionStorage.setItem("homeAnimated", "true");
-// } else {
-    document.body.classList.remove("animate-on-load");
-    const loader = document.querySelector(".loader");
-    if (loader) loader.remove();
-// }
+    if (!hasAnimated) {
+        runHomeAnimation();
+        sessionStorage.setItem("homeAnimated", "true");
+    } else {
+        document.body.classList.remove("animate-on-load");
+        const loader = document.querySelector(".loader");
+        if (loader) loader.remove();
+    }
 
-    function runHomeAnimation() { 
-    gsap.registerPlugin(CustomEase);
-    CustomEase.create("hop", "0.22,1,0.36,1");
+    function runHomeAnimation() {
+        gsap.registerPlugin(CustomEase);
+        CustomEase.create("hop", "0.22,1,0.36,1");
 
-    const tl = gsap.timeline({
-        delay: 0.3,
-        defaults: { ease: "hop" }
-    });
+        const tl = gsap.timeline({
+            delay: 0.3,
+            defaults: { ease: "hop" }
+        });
 
-    const counts = document.querySelectorAll(".count");
+        const counts = document.querySelectorAll(".count");
 
-    counts.forEach((count, index) => {
-        const digit = count.querySelectorAll(".digit h1");
+        counts.forEach((count, index) => {
+            const digit = count.querySelectorAll(".digit h1");
 
-        tl.to(digit, {
-            y: "0%",
-            duration: 1,
-            stagger: 0.075
-        }, index);
-
-        if (index < counts.length) {
             tl.to(digit, {
-                y: "-100%",
+                y: "0%",
                 duration: 1,
                 stagger: 0.075
-            }, index + 1);
-        }
-    });
+            }, index);
 
-    tl.to(".spinner", { opacity: 0, duration: 0.3 });
-    tl.to(".word h1", { y: "0%", duration: 1 }, "<");
-    tl.to(".divider", {
-        scaleY: "100%",
-        duration: 1,
-        onComplete: () =>
-            gsap.to(".divider", { opacity: 0, duration: 0.4, })
-    }, "<");
+            if (index < counts.length) {
+                tl.to(digit, {
+                    y: "-100%",
+                    duration: 1,
+                    stagger: 0.075
+                }, index + 1);
+            }
+        });
 
-    tl.to("#word-1 h1", {
-        y: "100%",
-        duration: 0.1,
-        delay: 0.3
-    });
+        tl.to(".spinner", { opacity: 0, duration: 0.3 });
+        tl.to(".word h1", { y: "0%", duration: 1 }, "<");
+        tl.to(".divider", {
+            scaleY: "100%",
+            duration: 1,
+            onComplete: () =>
+                gsap.to(".divider", { opacity: 0, duration: 0.4, })
+        }, "<");
 
-    tl.to("#word-2 h1", {
-        y: "-100%",
-        duration: 0.2,
-        delay: 0.3
-    });
+        tl.to("#word-1 h1", {
+            y: "100%",
+            duration: 0.1,
+            delay: 0.3
+        });
 
-    tl.to(".block", {
-        clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0)",
-        stagger: 0.1
-    });
+        tl.to("#word-2 h1", {
+            y: "-100%",
+            duration: 0.2,
+            delay: 0.3
+        });
 
-    tl.to(".loader", {
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        onComplete: () => {
-            const loader = document.querySelector(".loader");
-            loader.classList.add("hidden");
-            loader.remove();
-        }
-    });
+        tl.to(".block", {
+            clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0)",
+            stagger: 0.1
+        });
 
-    tl.to([".nav", ".info-header"], {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power2.out",
-        force3D: true
-    })
+        tl.to(".loader", {
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            onComplete: () => {
+                const loader = document.querySelector(".loader");
+                loader.classList.add("hidden");
+                loader.remove();
+            }
+        });
 
-        .to(".hero", {
-            y: 0,
-            opacity: 1,
-            duration: 1.2,
-            ease: "power3.out",
-            force3D: true
-        }, "-=0.6")
-
-        .to(".image-ring", {
-            scale: 1,
-            opacity: 1,
-            duration: 1.3,
-            ease: "power4.out",
-            transformOrigin: "center center",
-            force3D: true
-        }, "-=1")
-
-        .to(".title", {
+        tl.to([".nav", ".info-header"], {
             y: 0,
             opacity: 1,
             duration: 1,
+            stagger: 0.15,
             ease: "power2.out",
             force3D: true
-        }, "-=0.9")
+        })
 
-        .to(".grid", {
-            y: 0,
-            opacity: 1,
-            duration: 1.1,
-            ease: "power2.out",
-            force3D: true
-        }, "-=0.8");
+            .to(".hero", {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: "power3.out",
+                force3D: true
+            }, "-=0.6")
+
+            .to(".image-ring", {
+                scale: 1,
+                opacity: 1,
+                duration: 1.3,
+                ease: "power4.out",
+                transformOrigin: "center center",
+                force3D: true
+            }, "-=1")
+
+            .to(".title", {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power2.out",
+                force3D: true
+            }, "-=0.9")
+
+            .to(".grid", {
+                y: 0,
+                opacity: 1,
+                duration: 1.1,
+                ease: "power2.out",
+                force3D: true
+            }, "-=0.8");
     }
 
     const now = new Date();
