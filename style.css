@@ -429,13 +429,13 @@ body.dark .moon {
     .menu {
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap: 5px;
         flex-wrap: nowrap;
     }
 
     .menu a {
         font-size: 7px;
-        margin-left: 1px;
+        margin-left: 2px;
         white-space: nowrap;
     }
 
@@ -601,7 +601,7 @@ body.dark .animated-text span::after {
 /* title */
 .title {
     font-family: monospace;
-    font-size: clamp(24px, 5vw, 42px);
+    font-size: clamp(20px, 5vw, 42px);
     margin-bottom: 20px;
     color: var(--primary-blue);
 }
@@ -711,9 +711,9 @@ body.dark .image-ring:hover {
 
 .skills-title {
     font-size: 36px;
-    margin: auto;
-    margin-bottom: 40px;
+    text-align: center;
     letter-spacing: 4px;
+    margin-bottom: 40px;
 }
 
 .skill-list {
