@@ -234,6 +234,113 @@ h1 span {
     height: 50px;
     border-radius: 999px;
     background: #F3F3F3;
+    box-shadow: inset 10px 10px 30px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+/* CIRCLE */
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 
+        10px 10px 20px rgba(0, 0, 0, 0.05),
+        inset -10px -10px 30px rgba(0, 0, 0, 0.05);
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    transition: 
+        transform 0.35s cubic-bezier(.4,0,.2,1),
+        background 0.3s ease,
+        width 0.2s ease;
+
+    will-change: transform;
+}
+
+/* ICONS */
+
+svg {
+    width: 24px;
+    position: absolute;
+    transition: 
+        transform 0.35s cubic-bezier(.4,0,.2,1),
+        opacity 0.3s ease;
+}
+
+/* LIGHT MODE */
+
+.sun {
+    color: #FFD600;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.moon {
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* PRESS EFFECT */
+
+label:active .circle {
+    width: 60px;
+}
+
+/* DARK MODE */
+
+body.dark {
+    background: var(--bg-main);
+    color: #ccd6f6;
+}
+
+body.dark .card {
+    background: #1f2937;
+}
+
+body.dark .nav {
+    background: #1d4ed8;
+}
+
+body.dark .darkModeLabel {
+    background: #1f1f21;
+}
+
+body.dark .circle {
+    transform: translateY(-50%) translateX(50px);
+    background: #2C2C2F;
+}
+
+body.dark .sun {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+body.dark .moon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* .darkModeInput {
+    display: none;
+}
+
+.darkModeLabel {
+    width: 100px;
+    height: 50px;
+    border-radius: 999px;
+    background: #F3F3F3;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.05) inset;
     cursor: pointer;
     position: relative;
@@ -308,7 +415,7 @@ body.dark .sun {
 body.dark .moon {
     opacity: 1;
     transform: translateY(100%);
-}
+} */
 
 
 /* navbar section */
