@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AARYA | PORTFOLIO</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="animate-on-load">
+    <!-- loader -->
+    <div class="loader">
+        <div class="overlay">
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <div class="intro-logo">
+            <div class="word" id="word-1">
+                <h1><span>My</span></h1>
+            </div>
+            <div class="word" id="word-2">
+                <h1><span>Portfolio</span></h1>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+        <div class="counter">
+            <div class="count">
+                <div class="digit">
+                    <h1>3</h1>
+                </div>
+            </div>
+            <div class="count">
+                <div class="digit">
+                    <h1>2</h1>
+                </div>
+            </div>
+            <div class="count">
+                <div class="digit">
+                    <h1>1</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="checkbox" id="toggle" class="darkModeInput">
+    <div class="snow-container" id="snow"></div>
+    <nav class="nav">
+        <div class="logo"><a href="/">AARYA</a></div>
+        <div class="menu">
+            <a class="navlink" href="/project.html">0.1 Projects = () =></a>
+            <a class="navlink" onclick="scrollToAbout()">0.2 About = () =></a>
+            <a class="navlink" onclick="scrollToSkills()">0.3 My Skills = () =></a>
+            <a class="navlink" href="/contact.html">0.4 Contact = () =></a>
+            <a href="https://docs.google.com/document/d/17CNq7mW7Ndj4UTql05LIH7kmm-UEo9Zb8M405Zdk1UE/edit?tab=t.0" target="_blank" class="resume-btn">RESUME</a>
+        </div>
+    </nav>
+    <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
+            <div class="circle">
+                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+                </svg>
+                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </label>
+    </div>
+    <section id="hero" class="hero">
+        <div class="hero-left">
+            <h2 class="title">&lt;Full Stack Developer /&gt;</h2>
+            <div class="card hero-card">
+                <h3>Hi, I'm Aarya</h3>
+                <h2 class="second-title">Software Engineer</h2>
+                <div class="animated-text">I make your apps<span></span></div>
+            </div>
+        </div>
+        <div class="image-ring">
+            <img src="aarya.png" alt="Aarya"
+                onerror="this.src='https://via.placeholder.com/350x350/000000/FFFFFF?text=Aarya'">
+        </div>
+    </section>
+    <section id="about" class="grid">
+        <div class="card about">
+            <h2>ABOUT ME. . .</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Hello! My name is <span class="shine-text">Aarya</span> and I’m a Full-Stack Developer located
+                        in India and I have
+                        a serious
+                        passion for UI effects, animations and creating intuitive, dynamic user experiences.
+                        Well-organised person, creative problem-solver who thrives on building and finding better ways
+                        to do things. Fan of Gaming esports, outdoor activities and Web series.
+                    </p>
+                </div>
+                    <img  src="/legoImage.jpg"
+                        alt="About Image" width="200px" class="about-img">
+            </div>
+        </div>
+        <div class="card now">
+            <h2>NOW. . .</h2>
+            <p class="now-para">
+                I’m currently open to new opportunities like projects, freelance, or contract work. Whether you have a
+                question or just want to say hi, feel free to reach out.I’d be happy to connect.<br />
+            </p>
+            <a class="contact-btn" href="/contact.html">Contact Me</a>
+        </div>
+    </section>
+    <!-- skill planet -->
+    <section id="skills" class="skills-section">
+        <h2 class="skills-title">Technical Skills</h2>
+        <div class="skill-list">
+            <div>
+                <span>&lt;ul&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>postman<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>Tailwind<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>CCS3<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>HTML5<span>&lt;/li&gt;</span></br>
+                <span>&lt;/ul&gt;</span>
+            </div>
+            <div>
+
+                <span>&lt;ul&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>JavaScript<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>TypeScript<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>NextJS<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>ReactJs<span>&lt;/li&gt;</span></br>
+                <span>&lt;/ul&gt;</span>
+            </div>
+            <div>
+
+                <span>&lt;ul&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>MongoDB<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>Git<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>NodeJS<span>&lt;/li&gt;</span></br>
+                <span>&lt;/ul&gt;</span>
+            </div>
+        </div>
+        <section class="skill-planet">
+            <div class="orbit-container">
+                <div class="core" onclick="scrollToHero()">AARYA</div>
+                <div class="orbit">
+                    <div class="planet-wrapper" style="--i:0">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
+                                class="skill-icon" alt="Postman"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:1">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                                class="skill-icon" alt="Tailwind"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:2">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                                class="skill-icon" alt="CSS"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:3">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                class="skill-icon" alt="HTML"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:4">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                class="skill-icon" alt="JS"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:5">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                                class="skill-icon" alt="TS"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:6">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                                class="skill-icon" alt="NextJS"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:7">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                class="skill-icon" alt="React"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:8">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                                class="skill-icon" alt="momgodb"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:9">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                                class="skill-icon" alt="git"></div>
+                    </div>
+                    <div class="planet-wrapper" style="--i:10">
+                        <div class="planet"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                                class="skill-icon" alt="git"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <section class="">
+        <h2 class="project-maintitle">My Projects</h2>
+        <div class="featured-card-home">
+            <div class="featured-image"><img src="/electronicWebsitePc.png" alt="image" width="100%"></div>
+            <div>
+                <span class="badge">Web App</span>
+                <h2 class="project-title">Singitronic</h2>
+                <p class="project-desc">
+                    Built a full-stack e-commerce web application with secure authentication, product catalog, cart, and
+                    wishlist functionality. Implemented dynamic pricing, tax calculation, and a responsive checkout
+                    experience for seamless order management.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech">NextJS</span>
+                    <span class="tech">MySql</span>
+                    <span class="tech">ExpressJS</span>
+                    <span class="tech">NodeJS</span>
+                    <span class="tech">tailwindcss</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://electronic-website-frontend.vercel.app" class="btn-projects" target="_blank">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://github.com/AARYA77-dev/electronic-website-frontend" class="btn-projects"
+                        target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-card-home">
+            <div class="featured-image"><img src="/keeunFoodWebsitePic.png" alt="image" width="100%"></div>
+            <div>
+                <span class="badge">Web App</span>
+                <h2 class="project-title">Onlinekeenumeals</h2>
+                <p class="project-desc">
+                    Responsive frontend for a food ordering website with a clean, light, and classical theme, optimized
+                    for all devices.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech">Html</span>
+                    <span class="tech">Css</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://aarya77-dev.github.io/Keenuprimefood77.github.io/" class="btn-projects"
+                        target="_blank">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://github.com/AARYA77-dev/Keenuprimefood77.github.io" class="btn-projects"
+                        target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <a class="contact-btn" href="/project.html">More Projects <i style="margin: auto;" class="fa-solid fa-arrow-right"></i></a>
+    </section>
+    <section>
+        <div class="card contact">
+            <h1>Social Link</h1>
+            <div class="social-icons">
+                <a href="https://instagram.com/keenunisha" target="_blank">
+                    <i class="fa-brands fa-instagram social-icon"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/aarya-thkur-45884a236" target="_blank">
+                    <i class="fa-brands fa-linkedin social-icon"></i>
+                </a>
+                <a href="https://discordapp.com/users/1453225181362262166" target="_blank">
+                    <i class="fa-brands fa-discord social-icon"></i>
+                </a>
+                <a href="https://github.com/AARYA77-dev" target="_blank">
+                    <i class="fa-brands fa-github social-icon"></i>
+                </a>
+                <a href="https://dev.to/aarya77dev" target="_blank">
+                    <i class="fa-brands fa-dev social-icon"></i>
+                </a>
+            </div>
+            <div class="contact-send-msg">
+                <h2>Send a Message</h2>
+                <a class="contact-btn" href="/contact.html">Contact Me</a>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+<script>
+// const hasAnimated = sessionStorage.getItem("homeAnimated");
+
+// if (!hasAnimated) {
+    // runHomeAnimation();
+    // sessionStorage.setItem("homeAnimated", "true");
+// } else {
+    document.body.classList.remove("animate-on-load");
+    const loader = document.querySelector(".loader");
+    if (loader) loader.remove();
+// }
+
+    function runHomeAnimation() { 
+    gsap.registerPlugin(CustomEase);
+    CustomEase.create("hop", "0.22,1,0.36,1");
+
+    const tl = gsap.timeline({
+        delay: 0.3,
+        defaults: { ease: "hop" }
+    });
+
+    const counts = document.querySelectorAll(".count");
+
+    counts.forEach((count, index) => {
+        const digit = count.querySelectorAll(".digit h1");
+
+        tl.to(digit, {
+            y: "0%",
+            duration: 1,
+            stagger: 0.075
+        }, index);
+
+        if (index < counts.length) {
+            tl.to(digit, {
+                y: "-100%",
+                duration: 1,
+                stagger: 0.075
+            }, index + 1);
+        }
+    });
+
+    tl.to(".spinner", { opacity: 0, duration: 0.3 });
+    tl.to(".word h1", { y: "0%", duration: 1 }, "<");
+    tl.to(".divider", {
+        scaleY: "100%",
+        duration: 1,
+        onComplete: () =>
+            gsap.to(".divider", { opacity: 0, duration: 0.4, })
+    }, "<");
+
+    tl.to("#word-1 h1", {
+        y: "100%",
+        duration: 0.1,
+        delay: 0.3
+    });
+
+    tl.to("#word-2 h1", {
+        y: "-100%",
+        duration: 0.2,
+        delay: 0.3
+    });
+
+    tl.to(".block", {
+        clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0)",
+        stagger: 0.1
+    });
+
+    tl.to(".loader", {
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        onComplete: () => {
+            const loader = document.querySelector(".loader");
+            loader.classList.add("hidden");
+            loader.remove();
+        }
+    });
+
+    tl.to([".nav", ".info-header"], {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power2.out",
+        force3D: true
+    })
+
+        .to(".hero", {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            force3D: true
+        }, "-=0.6")
+
+        .to(".image-ring", {
+            scale: 1,
+            opacity: 1,
+            duration: 1.3,
+            ease: "power4.out",
+            transformOrigin: "center center",
+            force3D: true
+        }, "-=1")
+
+        .to(".title", {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+            force3D: true
+        }, "-=0.9")
+
+        .to(".grid", {
+            y: 0,
+            opacity: 1,
+            duration: 1.1,
+            ease: "power2.out",
+            force3D: true
+        }, "-=0.8");
+    }
+
+    const now = new Date();
+    const time = now.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
+    document.getElementById("time").textContent = time;
+
+    function scrollToHero() {
+        document.getElementById("hero").scrollIntoView();
+    }
+    function scrollToAbout() {
+        document.getElementById("about").scrollIntoView();
+    }
+    function scrollToSkills() {
+        document.getElementById("skills").scrollIntoView();
+    }
+
+    const THEME_KEY = "theme";
+    const toggle = document.getElementById("toggle");
+    const snow = document.getElementById("snow");
+
+    function applyTheme(theme) {
+        const isDark = theme === "dark";
+        document.body.classList.toggle("dark", isDark);
+        if (toggle) toggle.checked = isDark
+        if (snow) {
+            if (isDark) createSnow();
+            else snow.innerHTML = "";
+        }
+    }
+
+    const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+    applyTheme(savedTheme);
+
+    if (toggle) {
+        toggle.addEventListener("change", () => {
+            const theme = toggle.checked ? "dark" : "light";
+            localStorage.setItem(THEME_KEY, theme);
+            applyTheme(theme);
+        });
+    }
+
+    function createSnow() {
+        snow.innerHTML = "";
+        for (let i = 0; i < 80; i++) {
+            const flake = document.createElement("div");
+            flake.className = "snowflake";
+            flake.style.left = Math.random() * 100 + "vw";
+            flake.style.animationDuration = 5 + Math.random() * 10 + "s";
+            flake.style.opacity = Math.random();
+            snow.appendChild(flake);
+        }
+    }
+</script>
+
+</html>
