@@ -936,7 +936,7 @@ body.dark .page-subtitle {
     background: var(--primary);
     border-radius: var(--radius);
     padding: 30px;
-    margin-bottom: 30px;
+    margin: 30px 0 ;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
