@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <body class="animate-on-load">
     <!-- loader -->
@@ -87,7 +88,7 @@
                 onerror="this.src='https://via.placeholder.com/350x350/000000/FFFFFF?text=Aarya'">
         </div>
     </section>
-    <section id="about" class="grid">
+    <section id="about" class="grid stacking-card">
         <div class="card about">
             <h2>ABOUT ME. . .</h2>
             <div class="about-content">
@@ -114,8 +115,8 @@
         </div>
     </section>
     <!-- skill planet -->
-    <section id="skills" class="skills-section">
-        <h2 class="skills-title">Technical Skills</h2>
+    <section id="skills" class="skills-section stacking-card">
+        <h2 class="skills-title animated-header">Technical Skills</h2>
         <div class="skill-list">
             <div>
                 <span>&lt;ul&gt;</span></br>
@@ -145,10 +146,11 @@
                 <span>&lt;/ul&gt;</span>
             </div>
         </div>
-        <section class="skill-planet">
-            <div class="orbit-container">
+        <section class="skill-planet stacking-card">
+            <div id="three-container"></div>
+            <!---  <div class="orbit-container">
                 <div class="core" onclick="scrollToHero()">AARYA</div>
-                <div class="orbit">
+                 <div class="orbit">
                     <div class="planet-wrapper" style="--i:0">
                         <div class="planet"><img
                                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
@@ -204,14 +206,14 @@
                                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
                                 class="skill-icon" alt="git"></div>
                     </div>
-                </div>
-            </div>
+                </div> 
+            </div>-->
         </section>
 
     </section>
     <section class="">
-        <h2 class="project-maintitle">My Projects</h2>
-        <div class="featured-card-home">
+        <h2 class="project-maintitle animated-header">My Projects</h2>
+        <div class="featured-card-home stacking-card">
             <div class="featured-image"><img src="electronicWebsitePc.png" alt="image" width="100%"></div>
             <div>
                 <span class="badge">Web App</span>
@@ -238,7 +240,7 @@
                 </div>
             </div>
         </div>
-        <div class="featured-card-home">
+        <div class="featured-card-home stacking-card">
             <div class="featured-image"><img src="keeunFoodWebsitePic.png" alt="image" width="100%"></div>
             <div>
                 <span class="badge">Web App</span>
@@ -308,6 +310,7 @@
 
     function runHomeAnimation() {
         gsap.registerPlugin(CustomEase);
+        gsap.registerPlugin(ScrollTrigger)
         CustomEase.create("hop", "0.22,1,0.36,1");
 
         const tl = gsap.timeline({
@@ -369,6 +372,9 @@
                 const loader = document.querySelector(".loader");
                 loader.classList.add("hidden");
                 loader.remove();
+                titleAnimation();
+                stackingAnimation();
+                ScrollTrigger.refresh();
             }
         });
 
@@ -405,14 +411,104 @@
                 ease: "power2.out",
                 force3D: true
             }, "-=0.9")
+    }
+    function titleAnimation() {
+        gsap.registerPlugin(ScrollTrigger);
 
-            .to(".grid", {
-                y: 0,
-                opacity: 1,
-                duration: 1.1,
-                ease: "power2.out",
-                force3D: true
-            }, "-=0.8");
+        const textEls = document.querySelectorAll(".animated-header");
+
+        textEls.forEach((textEl) => {
+
+            const text = textEl.textContent;
+
+            textEl.innerHTML = text
+                .split(" ")
+                .map(word => `<h2 class="word">${word}</h2>`)
+                .join(" ");
+
+            const words = textEl.querySelectorAll(".word");
+
+            words.forEach(word => {
+                gsap.set(word.parentNode, { perspective: 1000 });
+            });
+
+            gsap.fromTo(
+                words,
+                {
+                    opacity: 0,
+                    z: () => gsap.utils.random(500, 900),
+                    xPercent: () => gsap.utils.random(-100, 100),
+                    yPercent: () => gsap.utils.random(-50, 50),
+                    rotationX: () => gsap.utils.random(-90, 90),
+                },
+                {
+                    opacity: 1,
+                    z: 0,
+                    xPercent: 0,
+                    yPercent: 0,
+                    rotationX: 0,
+                    duration: 0.8,
+                    ease: "expo.out",
+                    stagger: {
+                        each: 0.1,
+                        from: "random"
+                    },
+                    scrollTrigger: {
+                        trigger: textEl,
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+
+        });
+    }
+
+    function stackingAnimation() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const cards = document.querySelectorAll(".stacking-card");
+
+
+        gsap.to("#hero",
+            {
+                scale: 0.75,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true
+                }
+            },
+
+        );
+
+        cards.forEach((card, index) => {
+            gsap.fromTo(
+                card,
+                {
+                    scale: 0.9,
+                    opacity: 0,
+                    y: 100
+                },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        end: "top 60%",
+                        scrub: true,
+                    }
+                }
+            );
+        });
     }
 
     const now = new Date();
@@ -470,5 +566,162 @@
         }
     }
 </script>
+
+<!-- 3D skill icons -->
+
+<script type="module">
+    import * as THREE from "https://esm.sh/three@0.160.0";
+    import { OrbitControls } from "https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls";
+    import { DecalGeometry } from "https://esm.sh/three@0.160.0/examples/jsm/geometries/DecalGeometry";
+
+    // Container
+    const container = document.getElementById("three-container");
+
+    // Scene
+    const width =  container.clientWidth;
+    const height = 400;
+    const scene = new THREE.Scene();
+
+    // Camera
+    const camera = new THREE.PerspectiveCamera(
+        90,
+        width / height,
+        0.4,
+        10000
+    );
+    camera.position.z = 6;
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(width, height);
+    container.appendChild(renderer.domElement);
+
+    renderer.physicallyCorrectLights = true;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableZoom = false;
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0xffffff, 3));
+
+    const light = new THREE.DirectionalLight(0xffffff, 1.5);
+    light.position.set(5, 5, 5);
+    scene.add(light);
+
+    // 🌍 CENTER GROUP
+    const group = new THREE.Group();
+    scene.add(group);
+
+    // 🎯 SKILL ICONS (your SVGs)
+    const skills = [
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    ];
+
+
+
+    // 🌍 CREATE PLANETS
+    const loader = new THREE.TextureLoader();
+
+    skills.forEach((url, i) => {
+        // 🌑 PLANET
+        const geometry = new THREE.SphereGeometry(0.8, 32, 32);
+        const material = new THREE.MeshStandardMaterial({
+            color: "darkblue",
+            metalness: 0.2
+        });
+
+        const planet = new THREE.Mesh(geometry, material);
+
+        // 🧭 POSITION (vertical orbit)
+        const radius = 3.5;
+        const angle = (i / skills.length) * Math.PI * 2;
+
+        planet.position.x = Math.sin(angle) * radius;
+        planet.position.y = Math.cos(angle) * radius;
+
+        scene.add(planet);
+
+        // 🧩 LOAD SVG
+        const texture = loader.load(url);
+        texture.colorSpace = THREE.SRGBColorSpace;
+
+        // 🎯 DECAL POSITION (front of sphere)
+        const position = new THREE.Vector3(0, 0, 0.6);
+        const rotation = new THREE.Euler(0, 0, 0);
+        const scale = new THREE.Vector3(0.8, 0.8, 0.8);
+
+        const decalGeo = new DecalGeometry(planet, position, rotation, scale);
+
+        const decalMat = new THREE.MeshStandardMaterial({
+            map: texture,
+            transparent: true,
+            depthTest: true,
+            depthWrite: false,
+            polygonOffset: true,
+            polygonOffsetFactor: -4,
+        });
+
+        const decal = new THREE.Mesh(decalGeo, decalMat);
+
+        planet.add(decal);
+        group.add(planet)
+
+    });
+
+    // 🌟 CENTER CORE (optional)
+    // const coreGeo = new THREE.SphereGeometry(1.5, 32, 32);
+    // const coreMat = new THREE.MeshPhysicalMaterial({
+    //     color: "#2563eb",          // Keep base color white/clear
+    //     metalness: 0,              // Glass isn't metal
+    //     // roughness: 0.05,           // Very smooth for reflection 
+    //     thickness: 1.5,            // Adds "depth" to the glass edges
+    //     ior: 1.5,                  // Index of Refraction (1.5 is standard for glass)
+    //     opacity: 1,                // Keep 1 when using transmission     
+    //     // clearcoat: 1,              // Extra shiny outer layer
+    //     clearcoatRoughness: 0.05
+    // });
+    // const core = new THREE.Mesh(coreGeo, coreMat);
+    // scene.add(core);
+
+
+    // 🔄 ANIMATION
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // rotate whole system
+        group.rotation.z += 0.01;
+
+        // rotate planets individually
+        group.children.forEach((planet) => {
+            planet.rotation.z += -0.01;
+        });
+
+
+        // controls.update();
+        renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Resize
+    window.addEventListener("resize", () => {
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+    });
+</script>
+
+</body>
+
+</html>
 
 </html>

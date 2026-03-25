@@ -258,8 +258,8 @@ h1 span {
     justify-content: center;
     overflow: hidden;
 
-    transition: 
-        transform 0.35s cubic-bezier(.4,0,.2,1),
+    transition:
+        transform 0.35s cubic-bezier(.4, 0, .2, 1),
         background 0.3s ease;
 
     will-change: transform;
@@ -720,6 +720,14 @@ body.dark .image-ring:hover {
 
 /* --- SKILLS SECTION --- */
 
+.word {
+    display: inline-block;
+    transform-style: preserve-3d;
+    font-size: 36px;
+    text-align: center;
+    letter-spacing: 4px;
+}
+
 .skills-section {
     padding: 100px 20px;
     display: flex;
@@ -738,7 +746,7 @@ body.dark .image-ring:hover {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     width: 90%;
-    margin: 0 auto 40px;
+    margin: 0 auto 50px;
     padding: 16px;
     font-weight: 900;
     background: #0f172a;
@@ -757,14 +765,23 @@ body.dark .image-ring:hover {
     padding-left: 20px;
 }
 
-.skill-planet {
+#three-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height:250px;
+    margin: auto;
+}
+
+/* .skill-planet {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-}
+} */
 
-.orbit-container {
+/* .orbit-container {
     position: relative;
     width: 450px;
     height: 450px;
@@ -772,7 +789,7 @@ body.dark .image-ring:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} 
 
 .core {
     width: 100px;
@@ -880,7 +897,7 @@ body.dark .planet {
         height: 24px;
     }
 }
-
+ */
 
 /* project section */
 
@@ -936,7 +953,7 @@ body.dark .page-subtitle {
     background: var(--primary);
     border-radius: var(--radius);
     padding: 30px;
-    margin: 30px 0 ;
+    margin: 30px 0;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
