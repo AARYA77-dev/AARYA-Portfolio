@@ -6,6 +6,7 @@
     box-sizing: border-box;
     font-family: "Raleway", system-ui;
     transition: 0.5s;
+     -webkit-font-smoothing: antialiased;
 }
 
 :root {
@@ -25,11 +26,11 @@ body {
     color: white;
     padding: auto;
     padding: 16px;
+    overscroll-behavior: none;
 }
 
-
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 span {

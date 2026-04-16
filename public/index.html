@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <body class="animate-on-load">
@@ -84,8 +85,7 @@
             </div>
         </div>
         <div class="image-ring">
-            <img src="aarya.png" alt="Aarya"
-                onerror="this.src='https://via.placeholder.com/350x350/000000/FFFFFF?text=Aarya'">
+            <img src="aarya.png" alt="Aarya" loading="lazy">
         </div>
     </section>
     <section id="about" class="grid stacking-card">
@@ -102,7 +102,7 @@
                         to do things. Fan of Gaming esports, outdoor activities and Web series.
                     </p>
                 </div>
-                <img src="legoImage.jpg" alt="About Image" width="200px" class="about-img">
+                <img src="legoImage.jpg" alt="About Image" width="200px" class="about-img" loading="lazy">
             </div>
         </div>
         <div class="card now">
@@ -214,7 +214,7 @@
     <section class="">
         <h2 class="project-maintitle animated-header">My Projects</h2>
         <div class="featured-card-home stacking-card">
-            <div class="featured-image"><img src="electronicWebsitePc.png" alt="image" width="100%"></div>
+            <div class="featured-image"><img src="electronicWebsitePc.jpg" loading="lazy" alt="image" width="100%"></div>
             <div>
                 <span class="badge">Web App</span>
                 <h2 class="project-title">Singitronic</h2>
@@ -241,7 +241,7 @@
             </div>
         </div>
         <div class="featured-card-home stacking-card">
-            <div class="featured-image"><img src="keeunFoodWebsitePic.png" alt="image" width="100%"></div>
+            <div class="featured-image"><img src="keeunFoodWebsitePic.jpg" loading="lazy" alt="image" width="100%"></div>
             <div>
                 <span class="badge">Web App</span>
                 <h2 class="project-title">Keenu Meals</h2>
@@ -297,6 +297,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 <script>
+    // Initialize Lenis
+    const lenis = new Lenis({
+        duration: 1.2,        // smoothness
+        easing: (t) => 1 - Math.pow(1 - t, 3), // easeOutCubic
+        smoothWheel: true,
+        smoothTouch: false,
+    });
+
+    // Sync with GSAP
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Connect GSAP ScrollTrigger with Lenis
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    // Check if animation has already run in this session
     const hasAnimated = sessionStorage.getItem("homeAnimated");
 
     if (!hasAnimated) {
@@ -310,7 +333,19 @@
 
     function runHomeAnimation() {
         gsap.registerPlugin(CustomEase);
-        gsap.registerPlugin(ScrollTrigger)
+        gsap.registerPlugin(ScrollTrigger);
+
+        ScrollTrigger.scrollerProxy(document.body, {
+            scrollTop(value) {
+                return arguments.length
+                    ? lenis.scrollTo(value, { immediate: true })
+                    : lenis.scroll;
+            },
+            getBoundingClientRect() {
+                return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+            },
+        });
+
         CustomEase.create("hop", "0.22,1,0.36,1");
 
         const tl = gsap.timeline({
@@ -456,7 +491,8 @@
                     scrollTrigger: {
                         trigger: textEl,
                         start: "top 80%",
-                        toggleActions: "play none none none"
+                        toggleActions: "play none none none",
+                        scroller: document.body,
                     }
                 }
             );
@@ -478,9 +514,11 @@
                     trigger: "#hero",
                     start: "top top",
                     end: "bottom top",
-                    scrub: true,
+                    scrub: 0.5,
+                    fastScrollEnd: true,
                     pinSpacing: false,
-                    invalidateOnRefresh: true
+                    invalidateOnRefresh: true,
+                    scroller: document.body,
                 }
             },
 
@@ -504,7 +542,9 @@
                         trigger: card,
                         start: "top 90%",
                         end: "top 60%",
-                        scrub: true,
+                        scrub: 0.5,
+                        fastScrollEnd: true,
+                        scroller: document.body,
                     }
                 }
             );
@@ -577,8 +617,17 @@
     // Container
     const container = document.getElementById("three-container");
 
+    let isVisible = true;
+
+    const observer = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+
+        // restart animation when visible again
+        if (isVisible) animate();
+    });
+
     // Scene
-    const width =  container.clientWidth;
+    const width = container.clientWidth;
     const height = 400;
     const scene = new THREE.Scene();
 
@@ -695,6 +744,7 @@
 
     // 🔄 ANIMATION
     function animate() {
+         if (!isVisible) return;
         requestAnimationFrame(animate);
 
         // rotate whole system
