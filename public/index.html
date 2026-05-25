@@ -125,6 +125,8 @@
                 <span class="code-line">&lt;li&gt;</span>CCS3<span>&lt;/li&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>HTML5<span>&lt;/li&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>JavaScript<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>Figma<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>Supabase<span>&lt;/li&gt;</span></br>
                 <span>&lt;/ul&gt;</span>
             </div>
             <div>
@@ -132,8 +134,11 @@
                 <span>&lt;ul&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>TypeScript<span>&lt;/li&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>NextJS<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>ReactJs<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>ReactJS<span>&lt;/li&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>Angular<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>gsap<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>JIRA<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>Appwrite<span>&lt;/li&gt;</span></br>
                 <span>&lt;/ul&gt;</span>
             </div>
             <div>
@@ -143,6 +148,9 @@
                 <span class="code-line">&lt;li&gt;</span>MongoDB<span>&lt;/li&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>React-Native<span>&lt;/li&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>Git<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>ThreeJS<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>Firebase<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>Github<span>&lt;/li&gt;</span></br>
                 <span>&lt;/ul&gt;</span>
             </div>
         </div>
@@ -248,7 +256,8 @@
                 <span class="badge">Web App</span>
                 <h2 class="project-title">Family Management App</h2>
                 <p class="project-desc">
-                    A family management website with a clean, light, and classical theme. Used angular concepts like CRUD operations,
+                    A family management website with a clean, light, and classical theme. Used angular concepts like
+                    CRUD operations,
                     services, guards, modules and components to create a seamless user experience. Implemented features
                     such as user authentication, PrimeNg for better UI and FireBase for database and hosting.
                 </p>
@@ -285,8 +294,8 @@
                 <a href="https://github.com/AARYA77-dev" target="_blank">
                     <i class="fa-brands fa-github social-icon"></i>
                 </a>
-                <a href="https://dev.to/aarya77dev" target="_blank">
-                    <i class="fa-brands fa-dev social-icon"></i>
+                <a href="mailto:hireaarya.dev@gmail.com" target="_blank">
+                    <i class="fa-regular fa-envelope social-icon"></i>
                 </a>
             </div>
             <div class="contact-send-msg">
@@ -675,57 +684,90 @@
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/appwrite/appwrite-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chakraui/chakraui-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/primeng/primeng-original.svg",
     ];
 
 
 
     // 🌍 CREATE PLANETS
-    const loader = new THREE.TextureLoader();
-
     skills.forEach((url, i) => {
+
         // 🌑 PLANET
         const geometry = new THREE.SphereGeometry(0.8, 32, 32);
+
         const material = new THREE.MeshStandardMaterial({
             color: "darkblue",
-            metalness: 0.2
+            metalness: 0.2,
+            roughness: 0.5
         });
 
         const planet = new THREE.Mesh(geometry, material);
 
-        // 🧭 POSITION (vertical orbit)
-        const radius = 3.5;
+        // 🌍 ORBIT POSITION
+        const radius = 4;
         const angle = (i / skills.length) * Math.PI * 2;
 
         planet.position.x = Math.sin(angle) * radius;
         planet.position.y = Math.cos(angle) * radius;
 
-        scene.add(planet);
+        group.add(planet);
 
-        // 🧩 LOAD SVG
-        const texture = loader.load(url);
-        texture.colorSpace = THREE.SRGBColorSpace;
+        const img = new Image();
 
-        // 🎯 DECAL POSITION (front of sphere)
-        const position = new THREE.Vector3(0, 0, 0.6);
-        const rotation = new THREE.Euler(0, 0, 0);
-        const scale = new THREE.Vector3(0.8, 0.8, 0.8);
+        img.crossOrigin = "anonymous";
 
-        const decalGeo = new DecalGeometry(planet, position, rotation, scale);
+        img.onload = () => {
 
-        const decalMat = new THREE.MeshStandardMaterial({
-            map: texture,
-            transparent: true,
-            depthTest: true,
-            depthWrite: false,
-            polygonOffset: true,
-            polygonOffsetFactor: -4,
-        });
+            const canvas = document.createElement("canvas");
 
-        const decal = new THREE.Mesh(decalGeo, decalMat);
+            canvas.width = 256;
+            canvas.height = 256;
 
-        planet.add(decal);
-        group.add(planet)
+            const ctx = canvas.getContext("2d");
 
+            ctx.drawImage(img, 0, 0, 256, 256);
+
+            const texture = new THREE.CanvasTexture(canvas);
+
+            texture.needsUpdate = true;
+            texture.colorSpace = THREE.SRGBColorSpace;
+
+            const iconGeo = new THREE.SphereGeometry(
+                0.80,
+                32,
+                32,
+                0.90,
+                0.9,
+                1.1,
+                0.9
+            );
+
+            const iconMat = new THREE.MeshBasicMaterial({
+                map: texture,
+                transparent: true,
+                depthWrite: false,
+            });
+
+            const icon = new THREE.Mesh(iconGeo, iconMat);
+
+            icon.position.set(0, 0, 0);
+
+            planet.add(icon);
+        };
+
+        img.src = url;
     });
 
     // 🌟 CENTER CORE (optional)
@@ -749,12 +791,22 @@
         if (!isVisible) return;
         requestAnimationFrame(animate);
 
-        // rotate whole system
         group.rotation.z += 0.01;
 
-        // rotate planets individually
+
         group.children.forEach((planet) => {
             planet.rotation.z += -0.01;
+
+            // get icon
+            const icon = planet.children[0];
+
+            if (icon) {
+
+                // keep icon facing camera
+                icon.lookAt(camera.position);
+
+            }
+
         });
 
 

@@ -1216,10 +1216,10 @@ body.dark .social-icon {
 
 .social-icon:hover {
     color: blue;
-    padding: 1px 6px;
+    padding: 0px 6px;
     background: black;
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
     border-radius: 10px;
     border-color: #70aeff;
 }
@@ -1255,13 +1255,8 @@ body.dark .social-icon:hover {
     background: rgba(74, 144, 226, 0.1);
     box-shadow: 0 0 25px rgba(74, 144, 226, 0.6);
     transform: translateY(-2px);
-    border: 2px solid white;
+    /* border: 2px solid white; */
 }
-
-body.dark .contact-btn:hover {
-    border: 2px solid var(--primary-blue);
-}
-
 
 .contact-btn:active {
     transform: translateY(0);
