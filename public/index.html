@@ -126,6 +126,7 @@
                 <span class="code-line">&lt;li&gt;</span>HTML5<span>&lt;/li&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>JavaScript<span>&lt;/li&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>Figma<span>&lt;/li&gt;</span></br>
+                <span class="code-line">&lt;li&gt;</span>Bootstrap<span>&lt;/li&gt;</span></br>
                 <span class="code-line">&lt;li&gt;</span>Supabase<span>&lt;/li&gt;</span></br>
                 <span>&lt;/ul&gt;</span>
             </div>
@@ -156,66 +157,11 @@
         </div>
         <section class="skill-planet stacking-card">
             <div id="three-container"></div>
-            <!---  <div class="orbit-container">
+            <div class="orbit-container">
                 <div class="core" onclick="scrollToHero()">AARYA</div>
-                 <div class="orbit">
-                    <div class="planet-wrapper" style="--i:0">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
-                                class="skill-icon" alt="Postman"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:1">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-                                class="skill-icon" alt="Tailwind"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:2">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                                class="skill-icon" alt="CSS"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:3">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                                class="skill-icon" alt="HTML"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:4">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                class="skill-icon" alt="JS"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:5">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-                                class="skill-icon" alt="TS"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:6">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
-                                class="skill-icon" alt="NextJS"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:7">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                                class="skill-icon" alt="React"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:8">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-                                class="skill-icon" alt="momgodb"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:9">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                                class="skill-icon" alt="git"></div>
-                    </div>
-                    <div class="planet-wrapper" style="--i:10">
-                        <div class="planet"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                                class="skill-icon" alt="git"></div>
-                    </div>
-                </div> 
-            </div>-->
+                <div class="orbit" id="orbit">
+                </div>
+            </div>
         </section>
 
     </section>
@@ -623,57 +569,9 @@
 <script type="module">
     import * as THREE from "https://esm.sh/three@0.160.0";
     import { OrbitControls } from "https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls";
-    import { DecalGeometry } from "https://esm.sh/three@0.160.0/examples/jsm/geometries/DecalGeometry";
 
-    // Container
-    const container = document.getElementById("three-container");
+    document.querySelector(".orbit-container").style.display = "none";
 
-    let isVisible = true;
-
-    const observer = new IntersectionObserver((entries) => {
-        isVisible = entries[0].isIntersecting;
-
-        // restart animation when visible again
-        if (isVisible) animate();
-    });
-
-    // Scene
-    const width = container.clientWidth;
-    const height = 400;
-    const scene = new THREE.Scene();
-
-    // Camera
-    const camera = new THREE.PerspectiveCamera(
-        90,
-        width / height,
-        0.4,
-        10000
-    );
-    camera.position.z = 6;
-
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(width, height);
-    container.appendChild(renderer.domElement);
-
-    renderer.physicallyCorrectLights = true;
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableZoom = false;
-
-    // Lights
-    scene.add(new THREE.AmbientLight(0xffffff, 3));
-
-    const light = new THREE.DirectionalLight(0xffffff, 1.5);
-    light.position.set(5, 5, 5);
-    scene.add(light);
-
-    // 🌍 CENTER GROUP
-    const group = new THREE.Group();
-    scene.add(group);
-
-    // 🎯 SKILL ICONS (your SVGs)
     const skills = [
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
@@ -697,131 +595,227 @@
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chakraui/chakraui-original.svg",
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/primeng/primeng-original.svg",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
     ];
+    initThree();
 
-
-
-    // 🌍 CREATE PLANETS
-    skills.forEach((url, i) => {
-
-        // 🌑 PLANET
-        const geometry = new THREE.SphereGeometry(0.8, 32, 32);
-
-        const material = new THREE.MeshStandardMaterial({
-            color: "darkblue",
-            metalness: 0.2,
-            roughness: 0.5
-        });
-
-        const planet = new THREE.Mesh(geometry, material);
-
-        // 🌍 ORBIT POSITION
-        const radius = 4;
-        const angle = (i / skills.length) * Math.PI * 2;
-
-        planet.position.x = Math.sin(angle) * radius;
-        planet.position.y = Math.cos(angle) * radius;
-
-        group.add(planet);
-
-        const img = new Image();
-
-        img.crossOrigin = "anonymous";
-
-        img.onload = () => {
-
+    function supportsWebGL() {
+        try {
             const canvas = document.createElement("canvas");
-
-            canvas.width = 256;
-            canvas.height = 256;
-
-            const ctx = canvas.getContext("2d");
-
-            ctx.drawImage(img, 0, 0, 256, 256);
-
-            const texture = new THREE.CanvasTexture(canvas);
-
-            texture.needsUpdate = true;
-            texture.colorSpace = THREE.SRGBColorSpace;
-
-            const iconGeo = new THREE.SphereGeometry(
-                0.80,
-                32,
-                32,
-                0.90,
-                0.9,
-                1.1,
-                0.9
+            return !!(
+                window.WebGLRenderingContext &&
+                (canvas.getContext("webgl") ||
+                    canvas.getContext("experimental-webgl"))
             );
-
-            const iconMat = new THREE.MeshBasicMaterial({
-                map: texture,
-                transparent: true,
-                depthWrite: false,
-            });
-
-            const icon = new THREE.Mesh(iconGeo, iconMat);
-
-            icon.position.set(0, 0, 0);
-
-            planet.add(icon);
-        };
-
-        img.src = url;
-    });
-
-    // 🌟 CENTER CORE (optional)
-    // const coreGeo = new THREE.SphereGeometry(1.5, 32, 32);
-    // const coreMat = new THREE.MeshPhysicalMaterial({
-    //     color: "#2563eb",          // Keep base color white/clear
-    //     metalness: 0,              // Glass isn't metal
-    //     // roughness: 0.05,           // Very smooth for reflection 
-    //     thickness: 1.5,            // Adds "depth" to the glass edges
-    //     ior: 1.5,                  // Index of Refraction (1.5 is standard for glass)
-    //     opacity: 1,                // Keep 1 when using transmission     
-    //     // clearcoat: 1,              // Extra shiny outer layer
-    //     clearcoatRoughness: 0.05
-    // });
-    // const core = new THREE.Mesh(coreGeo, coreMat);
-    // scene.add(core);
-
-
-    // 🔄 ANIMATION
-    function animate() {
-        if (!isVisible) return;
-        requestAnimationFrame(animate);
-
-        group.rotation.z += 0.01;
-
-
-        group.children.forEach((planet) => {
-            planet.rotation.z += -0.01;
-
-            // get icon
-            const icon = planet.children[0];
-
-            if (icon) {
-
-                // keep icon facing camera
-                icon.lookAt(camera.position);
-
-            }
-
-        });
-
-
-        // controls.update();
-        renderer.render(scene, camera);
+        } catch {
+            return false;
+        }
     }
 
-    animate();
+    function hideThreeSection() {
+        const threeDSection = document.querySelector("#three-container");
+        if (threeDSection) threeDSection.style.display = "none";
+        const orbitSection = document.querySelector(".orbit-container");
+        if (orbitSection) {
+            orbitSection.style.display = "flex";
+        }
+    }
 
-    // Resize
-    window.addEventListener("resize", () => {
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
+
+    function initThree() {
+        if (!supportsWebGL()) {
+            hideThreeSection();
+            const orbit = document.getElementById("orbit");
+            skills.forEach((skill, index) => {
+                orbit.insertAdjacentHTML(
+                    "beforeend",
+                    `
+                    <div class="planet-wrapper" style="--i:${index}">
+                        <div class="planet">
+                            <img
+                                src="${skill}"
+                                class="skill-icon"
+                                alt="logo"
+                            >
+                        </div>
+                    </div>
+                    `
+                );
+            });
+            return;
+        }
+
+        const container = document.getElementById("three-container");
+
+        if (!container) return;
+
+        let renderer;
+
+        try {
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                alpha: true
+            });
+        } catch (e) {
+            console.warn("WebGL renderer could not be created.", e);
+            hideThreeSection();
+            return;
+        }
+
+        let isVisible = true;
+
+        const observer = new IntersectionObserver((entries) => {
+            isVisible = entries[0].isIntersecting;
+            if (isVisible) animate();
+        });
+
+        observer.observe(container);
+
+        const scene = new THREE.Scene();
+
+        const height = 400;
+        const width = container.clientWidth;
+
+        const camera = new THREE.PerspectiveCamera(
+            90,
+            width / height,
+            0.4,
+            10000
+        );
+
+        camera.position.z = 6;
+
         renderer.setSize(width, height);
-    });
+        renderer.physicallyCorrectLights = true;
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+        container.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = false;
+
+        scene.add(new THREE.AmbientLight(0xffffff, 3));
+
+        const light = new THREE.DirectionalLight(0xffffff, 1.5);
+        light.position.set(5, 5, 5);
+        scene.add(light);
+
+        const group = new THREE.Group();
+        scene.add(group);
+
+        // 🌍 CREATE PLANETS
+        skills.forEach((url, i) => {
+
+            // 🌑 PLANET
+            const geometry = new THREE.SphereGeometry(0.8, 32, 32);
+
+            const material = new THREE.MeshStandardMaterial({
+                color: "darkblue",
+                metalness: 0.2,
+                roughness: 0.5
+            });
+
+            const planet = new THREE.Mesh(geometry, material);
+
+            // 🌍 ORBIT POSITION
+            const radius = 4;
+            const angle = (i / skills.length) * Math.PI * 2;
+
+            planet.position.x = Math.sin(angle) * radius;
+            planet.position.y = Math.cos(angle) * radius;
+
+            group.add(planet);
+
+            const img = new Image();
+
+            img.crossOrigin = "anonymous";
+
+            img.onload = () => {
+
+                const canvas = document.createElement("canvas");
+
+                canvas.width = 256;
+                canvas.height = 256;
+
+                const ctx = canvas.getContext("2d");
+
+                ctx.drawImage(img, 0, 0, 256, 256);
+
+                const texture = new THREE.CanvasTexture(canvas);
+
+                texture.needsUpdate = true;
+                texture.colorSpace = THREE.SRGBColorSpace;
+
+                const iconGeo = new THREE.SphereGeometry(
+                    0.80,
+                    32,
+                    32,
+                    0.90,
+                    0.9,
+                    1.1,
+                    0.9
+                );
+
+                const iconMat = new THREE.MeshBasicMaterial({
+                    map: texture,
+                    transparent: true,
+                    depthWrite: false,
+                });
+
+                const icon = new THREE.Mesh(iconGeo, iconMat);
+
+                icon.position.set(0, 0, 0);
+
+                planet.add(icon);
+            };
+
+            img.src = url;
+        });
+
+        // 🌟 CENTER CORE (optional)
+        // const coreGeo = new THREE.SphereGeometry(1.5, 32, 32);
+        // const coreMat = new THREE.MeshPhysicalMaterial({
+        //     color: "#2563eb",         
+        //     metalness: 0,              
+        //     roughness: 0.05,    
+        //     thickness: 1.5,           
+        //     ior: 1.5,                 
+        //     opacity: 1,                   
+        //     clearcoat: 1,              
+        //     clearcoatRoughness: 0.05
+        // });
+        // const core = new THREE.Mesh(coreGeo, coreMat);
+        // scene.add(core);
+
+        function animate() {
+            if (!isVisible) return;
+
+            requestAnimationFrame(animate);
+
+            group.rotation.z += 0.004;
+
+            group.children.forEach((planet) => {
+                planet.rotation.z -= 0.004;
+
+                const icon = planet.children[0];
+                if (icon) icon.lookAt(camera.position);
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener("resize", () => {
+            const newWidth = container.clientWidth;
+            const newHeight = 400;
+
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(newWidth, newHeight);
+        });
+    }
 </script>
 
 </body>

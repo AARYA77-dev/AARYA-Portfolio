@@ -6,7 +6,7 @@
     box-sizing: border-box;
     font-family: "Raleway", system-ui;
     transition: 0.5s;
-     -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
 }
 
 :root {
@@ -30,7 +30,7 @@ body {
 }
 
 html {
-  scroll-behavior: auto;
+    scroll-behavior: auto;
 }
 
 span {
@@ -771,26 +771,20 @@ body.dark .image-ring:hover {
     justify-content: center;
     align-items: center;
     position: relative;
-    height:250px;
+    height: 250px;
     margin: auto;
+    margin-top: 25px;
 }
 
-/* .skill-planet {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-} */
-
-/* .orbit-container {
+.orbit-container {
     position: relative;
     width: 450px;
     height: 450px;
     overflow: hidden;
-    display: flex;
+    margin: auto;
     justify-content: center;
     align-items: center;
-} 
+}
 
 .core {
     width: 100px;
@@ -824,18 +818,18 @@ body.dark .image-ring:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(calc(var(--i) * 33deg)) translateY(-190px);
+    transform: translate(-50%, -50%) rotate(calc(var(--i) * 20deg)) translateY(-190px);
 }
 
 .skill-icon {
     width: 32px;
     height: 32px;
-    transform: rotate(calc(var(--i) * -33deg));
+    transform: rotate(calc(var(--i) * -20deg));
 }
 
 @media (max-width: 768px) {
     .skill-icon {
-        transform: rotate(calc(var(--i) * -45deg));
+        transform: rotate(calc(var(--i) * -20deg));
     }
 }
 
@@ -885,7 +879,7 @@ body.dark .planet {
     }
 
     .planet-wrapper {
-        transform: translate(-50%, -50%) rotate(calc(var(--i) * 45deg)) translateY(-130px);
+        transform: translate(-50%, -50%) rotate(calc(var(--i) * 20deg)) translateY(-130px);
     }
 
     .planet {
@@ -898,7 +892,7 @@ body.dark .planet {
         height: 24px;
     }
 }
- */
+
 
 /* project section */
 
