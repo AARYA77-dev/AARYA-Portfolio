@@ -52,7 +52,11 @@
     <div class="snow-container" id="snow"></div>
     <nav class="nav">
         <div class="logo"><a href="/">AARYA</a></div>
-        <div class="menu">
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu"
+            aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="menu" id="navMenu">
             <a class="navlink" href="project.html">0.1 Projects = () =></a>
             <a class="navlink" onclick="scrollToAbout()">0.2 About = () =></a>
             <a class="navlink" onclick="scrollToSkills()">0.3 My Skills = () =></a>
@@ -280,6 +284,7 @@
     const hasAnimated = sessionStorage.getItem("homeAnimated");
 
     if (!hasAnimated) {
+        lenis.stop();
         runHomeAnimation();
         sessionStorage.setItem("homeAnimated", "true");
     } else {
@@ -307,7 +312,11 @@
 
         const tl = gsap.timeline({
             delay: 0.3,
-            defaults: { ease: "hop" }
+            defaults: { ease: "hop" },
+            onComplete: () => {
+                document.body.classList.remove("animate-on-load");
+                lenis.start();
+            }
         });
 
         const counts = document.querySelectorAll(".count");
@@ -526,6 +535,41 @@
         document.getElementById("skills").scrollIntoView();
     }
 
+    setupMobileNav();
+
+    function setupMobileNav() {
+        const nav = document.querySelector(".nav");
+        const menuToggle = document.querySelector(".menu-toggle");
+        const menu = document.querySelector(".menu");
+
+        if (!nav || !menuToggle || !menu) return;
+
+        function setMenu(open) {
+            nav.classList.toggle("menu-open", open);
+            document.body.classList.toggle("menu-open", open);
+            menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+            menuToggle.innerHTML = open
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        }
+
+        menuToggle.addEventListener("click", () => {
+            setMenu(!nav.classList.contains("menu-open"));
+        });
+
+        menu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => setMenu(false));
+        });
+
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") setMenu(false);
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) setMenu(false);
+        });
+    }
+
     const THEME_KEY = "theme";
     const toggle = document.getElementById("toggle");
     const snow = document.getElementById("snow");
@@ -673,58 +717,131 @@
 
         const scene = new THREE.Scene();
 
-        const height = 400;
+        const height = Math.max(360, Math.min(560, container.clientWidth * 0.58));
         const width = container.clientWidth;
 
         const camera = new THREE.PerspectiveCamera(
-            90,
+            55,
             width / height,
-            0.4,
+            0.1,
             10000
         );
 
-        camera.position.z = 6;
+        camera.position.set(0, 0.45, width < 600 ? 16 : 12.5);
 
         renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.physicallyCorrectLights = true;
         renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.25;
 
         container.appendChild(renderer.domElement);
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.65;
+        controls.minPolarAngle = Math.PI * 0.34;
+        controls.maxPolarAngle = Math.PI * 0.66;
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.06;
 
-        scene.add(new THREE.AmbientLight(0xffffff, 3));
+        scene.add(new THREE.AmbientLight(0x9db9ff, 1.45));
 
-        const light = new THREE.DirectionalLight(0xffffff, 1.5);
-        light.position.set(5, 5, 5);
-        scene.add(light);
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
+        keyLight.position.set(4, 6, 8);
+        scene.add(keyLight);
+
+        const rimLight = new THREE.PointLight(0x22d3ee, 2.8, 18);
+        rimLight.position.set(-5, -2, 5);
+        scene.add(rimLight);
+
+        const warmLight = new THREE.PointLight(0xfacc15, 1.25, 12);
+        warmLight.position.set(3, 2, 2);
+        scene.add(warmLight);
 
         const group = new THREE.Group();
         scene.add(group);
 
-        // 🌍 CREATE PLANETS
+        const orbitGroup = new THREE.Group();
+        scene.add(orbitGroup);
+
+        const planetPalette = [
+            "#60a5fa",
+            "#22d3ee",
+            "#a78bfa",
+            "#34d399",
+            "#facc15",
+            "#fb7185",
+            "#38bdf8",
+            "#f97316"
+        ];
+
+        const glowTexture = createGlowTexture();
+        const core = createCore(glowTexture);
+        scene.add(core);
+
+        const starField = createStars();
+        scene.add(starField);
+
+        const ringConfigs = [
+            { radius: 2.2, count: 6, speed: 0.0024, offset: 0 },
+            { radius: 3.8, count: 6, speed: -0.0018, offset: Math.PI / 6 },
+            { radius: 5.25, count: 6, speed: 0.00135, offset: Math.PI / 10 },
+            { radius: 6.45, count: 5, speed: -0.00105, offset: Math.PI / 5 }
+        ];
+
+        ringConfigs.forEach(({ radius }, index) => {
+            orbitGroup.add(createOrbitRing(radius, index));
+        });
+
         skills.forEach((url, i) => {
 
-            // 🌑 PLANET
-            const geometry = new THREE.SphereGeometry(0.8, 32, 32);
+            const ring = getRingConfig(i);
+            const indexInRing = getIndexInRing(i);
+            const size = 0.34 + (i % 3) * 0.025;
+            const geometry = new THREE.SphereGeometry(size, 40, 40);
+            const color = new THREE.Color(planetPalette[i % planetPalette.length]);
 
             const material = new THREE.MeshStandardMaterial({
-                color: "darkblue",
-                metalness: 0.2,
-                roughness: 0.5
+                color,
+                emissive: color,
+                emissiveIntensity: 0.18,
+                metalness: 0.18,
+                roughness: 0.38
             });
 
             const planet = new THREE.Mesh(geometry, material);
 
-            // 🌍 ORBIT POSITION
-            const radius = 4;
-            const angle = (i / skills.length) * Math.PI * 2;
+            const angle = ring.offset + (indexInRing / ring.count) * Math.PI * 2;
+            const zWave = Math.sin(angle * 2) * 0.35;
 
-            planet.position.x = Math.sin(angle) * radius;
-            planet.position.y = Math.cos(angle) * radius;
+            planet.position.x = Math.sin(angle) * ring.radius;
+            planet.position.y = Math.cos(angle) * ring.radius * 0.5;
+            planet.position.z = zWave;
+            planet.userData = {
+                angle,
+                radius: ring.radius,
+                speed: ring.speed,
+                yScale: 0.5,
+                zOffset: zWave,
+                baseSize: size
+            };
 
             group.add(planet);
+
+            const glow = new THREE.Sprite(new THREE.SpriteMaterial({
+                map: glowTexture,
+                color,
+                transparent: true,
+                opacity: 0.34,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending
+            }));
+            glow.scale.set(size * 3.3, size * 3.3, 1);
+            planet.add(glow);
 
             const img = new Image();
 
@@ -746,59 +863,155 @@
                 texture.needsUpdate = true;
                 texture.colorSpace = THREE.SRGBColorSpace;
 
-                const iconGeo = new THREE.SphereGeometry(
-                    0.80,
-                    32,
-                    32,
-                    0.90,
-                    0.9,
-                    1.1,
-                    0.9
-                );
-
-                const iconMat = new THREE.MeshBasicMaterial({
+                const icon = new THREE.Sprite(new THREE.SpriteMaterial({
                     map: texture,
                     transparent: true,
-                    depthWrite: false,
-                });
-
-                const icon = new THREE.Mesh(iconGeo, iconMat);
-
-                icon.position.set(0, 0, 0);
-
-                planet.add(icon);
+                    depthWrite: false
+                }));
+                icon.name = "skillIcon";
+                icon.renderOrder = 3;
+                icon.scale.set(size * 1.2, size * 1.2, 1);
+                scene.add(icon);
+                planet.userData.icon = icon;
             };
 
             img.src = url;
         });
 
-        // 🌟 CENTER CORE (optional)
-        // const coreGeo = new THREE.SphereGeometry(1.5, 32, 32);
-        // const coreMat = new THREE.MeshPhysicalMaterial({
-        //     color: "#2563eb",         
-        //     metalness: 0,              
-        //     roughness: 0.05,    
-        //     thickness: 1.5,           
-        //     ior: 1.5,                 
-        //     opacity: 1,                   
-        //     clearcoat: 1,              
-        //     clearcoatRoughness: 0.05
-        // });
-        // const core = new THREE.Mesh(coreGeo, coreMat);
-        // scene.add(core);
+        function getRingConfig(index) {
+            let start = 0;
+            for (const config of ringConfigs) {
+                if (index < start + config.count) return config;
+                start += config.count;
+            }
+            return ringConfigs[ringConfigs.length - 1];
+        }
+
+        function getIndexInRing(index) {
+            let start = 0;
+            for (const config of ringConfigs) {
+                if (index < start + config.count) return index - start;
+                start += config.count;
+            }
+            return index - start;
+        }
+
+        function createGlowTexture() {
+            const canvas = document.createElement("canvas");
+            canvas.width = 128;
+            canvas.height = 128;
+            const ctx = canvas.getContext("2d");
+            const gradient = ctx.createRadialGradient(64, 64, 0, 64, 64, 62);
+            gradient.addColorStop(0, "rgba(255,255,255,0.9)");
+            gradient.addColorStop(0.34, "rgba(96,165,250,0.38)");
+            gradient.addColorStop(1, "rgba(96,165,250,0)");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 128, 128);
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function createCore(glowTexture) {
+            const coreGroup = new THREE.Group();
+
+            const coreGeo = new THREE.IcosahedronGeometry(0.96, 5);
+            const coreMat = new THREE.MeshPhysicalMaterial({
+                color: "#60a5fa",
+                emissive: "#2563eb",
+                emissiveIntensity: 0.55,
+                roughness: 0.18,
+                metalness: 0.08,
+                clearcoat: 1,
+                clearcoatRoughness: 0.08
+            });
+            coreGroup.add(new THREE.Mesh(coreGeo, coreMat));
+
+            const halo = new THREE.Sprite(new THREE.SpriteMaterial({
+                map: glowTexture,
+                color: "#38bdf8",
+                transparent: true,
+                opacity: 0.56,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending
+            }));
+            halo.scale.set(4.3, 4.3, 1);
+            coreGroup.add(halo);
+
+            return coreGroup;
+        }
+
+        function createOrbitRing(radius, index) {
+            const curve = new THREE.EllipseCurve(0, 0, radius, radius * 0.5, 0, Math.PI * 2);
+            const points = curve.getPoints(220);
+            const geometry = new THREE.BufferGeometry().setFromPoints(points);
+            const material = new THREE.LineDashedMaterial({
+                color: index % 2 ? 0x60a5fa : 0x22d3ee,
+                transparent: true,
+                opacity: 0.32,
+                dashSize: 0.12,
+                gapSize: 0.16
+            });
+            const ring = new THREE.Line(geometry, material);
+            ring.computeLineDistances();
+            return ring;
+        }
+
+        function createStars() {
+            const starCount = 420;
+            const positions = new Float32Array(starCount * 3);
+
+            for (let i = 0; i < starCount; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * 22;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 12;
+                positions[i * 3 + 2] = -4 - Math.random() * 12;
+            }
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+            const material = new THREE.PointsMaterial({
+                color: 0xdbeafe,
+                size: 0.035,
+                transparent: true,
+                opacity: 0.75,
+                depthWrite: false
+            });
+
+            return new THREE.Points(geometry, material);
+        }
+
+        const planetWorldPosition = new THREE.Vector3();
+        const cameraToPlanet = new THREE.Vector3();
 
         function animate() {
             if (!isVisible) return;
 
             requestAnimationFrame(animate);
 
-            group.rotation.z += 0.004;
+            controls.update();
+
+            group.rotation.z += 0.0016;
+            orbitGroup.rotation.z += 0.0016;
+            core.rotation.y += 0.006;
+            core.rotation.x += 0.002;
+            starField.rotation.z -= 0.00022;
 
             group.children.forEach((planet) => {
-                planet.rotation.z -= 0.004;
+                planet.userData.angle += planet.userData.speed;
+                planet.position.x = Math.sin(planet.userData.angle) * planet.userData.radius;
+                planet.position.y = Math.cos(planet.userData.angle) * planet.userData.radius * planet.userData.yScale;
+                planet.position.z = planet.userData.zOffset + Math.sin(planet.userData.angle * 1.7) * 0.18;
+                if (planet.userData.icon) {
+                    planet.getWorldPosition(planetWorldPosition);
+                    cameraToPlanet
+                        .copy(camera.position)
+                        .sub(planetWorldPosition)
+                        .normalize()
+                        .multiplyScalar(planet.userData.baseSize + 0.03);
 
-                const icon = planet.children[0];
-                if (icon) icon.lookAt(camera.position);
+                    planet.userData.icon.position
+                        .copy(planetWorldPosition)
+                        .add(cameraToPlanet);
+                }
             });
 
             renderer.render(scene, camera);
@@ -808,11 +1021,13 @@
 
         window.addEventListener("resize", () => {
             const newWidth = container.clientWidth;
-            const newHeight = 400;
+            const newHeight = Math.max(360, Math.min(560, newWidth * 0.58));
 
             camera.aspect = newWidth / newHeight;
+            camera.position.z = newWidth < 600 ? 16 : 12.5;
             camera.updateProjectionMatrix();
 
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.setSize(newWidth, newHeight);
         });
     }

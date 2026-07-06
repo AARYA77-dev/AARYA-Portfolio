@@ -16,7 +16,11 @@
     <div class="snow-container" id="snow"></div>
     <nav class="nav">
         <div class="logo"><a href="/">AARYA</a></div>
-        <div class="menu">
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu"
+            aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="menu" id="navMenu">
             <a class="navlink" href="/">0.1 Home = () =></a>
             <a class="navlink" href="index.html#about">0.2 ABOUT = () =></a>
             <a class="navlink" href="index.html#skills">0.3 My Skills = () =></a>
@@ -101,6 +105,41 @@
 
     const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
     applyTheme(savedTheme);
+
+    setupMobileNav();
+
+    function setupMobileNav() {
+        const nav = document.querySelector(".nav");
+        const menuToggle = document.querySelector(".menu-toggle");
+        const menu = document.querySelector(".menu");
+
+        if (!nav || !menuToggle || !menu) return;
+
+        function setMenu(open) {
+            nav.classList.toggle("menu-open", open);
+            document.body.classList.toggle("menu-open", open);
+            menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+            menuToggle.innerHTML = open
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        }
+
+        menuToggle.addEventListener("click", () => {
+            setMenu(!nav.classList.contains("menu-open"));
+        });
+
+        menu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => setMenu(false));
+        });
+
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") setMenu(false);
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) setMenu(false);
+        });
+    }
 
     if (toggle) {
         toggle.addEventListener("change", () => {
