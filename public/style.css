@@ -381,7 +381,7 @@ body:not(.dark) .skill-list {
 }
 
 body:not(.dark) .hero-card {
-    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    background: var(--primary-blue);
     color: #ffffff;
 }
 
@@ -509,11 +509,6 @@ body:not(.dark) .project-icon {
     cursor: pointer;
     align-items: center;
     justify-content: center;
-}
-
-.menu-toggle:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
 }
 
 .resume-btn {
@@ -714,7 +709,7 @@ body:not(.dark) .project-icon {
 
 .animated-text span::before {
     content: "modern";
-    color: black;
+    color: var(--feature-text-color);
     font-weight: bolder;
     animation: words 20s infinite;
 }
@@ -727,15 +722,16 @@ body.dark .animated-text span::before {
     content: "";
     position: absolute;
     width: calc(100% + 8px);
-    background-color: var(--primary-blue);
+    background: var(--primary-blue);
     height: 100%;
-    border-left: 2px solid #1258ed;
+    border-left: 2px solid #ffffff;
     right: -8px;
     animation: cursor 0.8s steps(1) infinite, typing 20s steps(10) infinite
 }
 
 body.dark .animated-text span::after {
-    background-color: #1F2937;
+    background: #1F2937;
+    border-left-color: #1258ed;
 }
 
 @keyframes cursor {
@@ -840,10 +836,8 @@ nav,
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
-.card:hover,
 .featured-card-home:hover,
-.project-card:hover,
-.contact-card:hover {
+.project-card:hover {
     transform: translateY(-4px);
 }
 
@@ -1309,7 +1303,6 @@ body.dark .featured-card-home {
 
 .project-card {
     background: var(--primary);
-    ;
     padding: 22px;
     border-radius: var(--radius);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -1465,7 +1458,6 @@ body.dark .social-icon {
     padding: 0px 6px;
     background: black;
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
-    /* transform: translateY(-2px); */
     border-radius: 10px;
     border-color: #70aeff;
 }
@@ -1714,7 +1706,35 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
 }
 
+
+/* --- RENDERING OPTIMIZATIONS --- */
+.optimize-visibility {
+    content-visibility: auto;
+}
+
+#three-container.optimize-visibility {
+    contain-intrinsic-size: auto 450px;
+}
+
+.project-card.optimize-visibility {
+    contain-intrinsic-size: auto 500px;
+}
+
+.featured-card.optimize-visibility {
+    contain-intrinsic-size: auto 360px;
+}
+
+.featured-card-home.optimize-visibility {
+    contain-intrinsic-size: auto 360px;
+}
+
+.optimize-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 150px;
+}
+
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
