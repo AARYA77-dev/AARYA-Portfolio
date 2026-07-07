@@ -455,8 +455,6 @@ body:not(.dark) .project-icon {
     border-radius: 14px;
     margin-bottom: 16px;
     box-shadow: 0 16px 40px rgba(37, 99, 235, 0.22);
-    position: sticky;
-    top: 16px;
     z-index: 900;
     backdrop-filter: blur(16px);
 }
@@ -583,8 +581,6 @@ body:not(.dark) .project-icon {
     .nav {
         padding: 10px 12px;
         border-radius: 12px;
-        position: sticky;
-        top: 10px;
     }
 
     .logo {

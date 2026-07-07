@@ -52,8 +52,7 @@
     <div class="snow-container" id="snow"></div>
     <nav class="nav">
         <div class="logo"><a href="/">AARYA</a></div>
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu"
-            aria-expanded="false">
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
             <i class="fa-solid fa-bars"></i>
         </button>
         <div class="menu" id="navMenu">
@@ -528,11 +527,13 @@
     function scrollToHero() {
         document.getElementById("hero").scrollIntoView();
     }
+
     function scrollToAbout() {
-        document.getElementById("about").scrollIntoView();
+        lenis.scrollTo(document.getElementById("about"));
     }
+
     function scrollToSkills() {
-        document.getElementById("skills").scrollIntoView();
+        lenis.scrollTo(document.getElementById("skills"));
     }
 
     setupMobileNav();

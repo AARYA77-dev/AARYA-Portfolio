@@ -13,12 +13,16 @@
     <input type="checkbox" id="toggle" class="darkModeInput">
     <nav class="nav">
         <div class="logo"><a href="/">AARYA</a></div>
-        <div class="menu">
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="menu" id="navMenu">
             <a class="navlink" href="/">0.1 Home = () =></a>
             <a class="navlink" href="index.html#about">0.2 About = () =></a>
             <a class="navlink" href="index.html#skills">0.3 My Skills = () =></a>
             <a class="navlink" href="contact.html">0.4 Contact = () =></a>
-            <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing" class="resume-btn">RESUME</a>
+            <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing"
+                class="resume-btn">RESUME</a>
         </div>
     </nav>
     <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
@@ -47,7 +51,8 @@
         <span class="featured-label">⭐ Featured Projects</span>
 
         <div class="featured-card">
-            <div class="featured-image"><img src="electronicWebsitePc.jpg" loading="lazy" alt="image" width="100%"></div>
+            <div class="featured-image"><img src="electronicWebsitePc.jpg" loading="lazy" alt="image" width="100%">
+            </div>
             <div>
                 <span class="badge">Web App</span>
                 <h2 class="project-title">Singitronic</h2>
@@ -75,7 +80,8 @@
         </div>
         <div class="project-grid">
             <div class="project-card">
-                <div class="project-icon"><img src="carBrandsLocatorPic.jpg" loading="lazy" alt="image" width="100%"></div>
+                <div class="project-icon"><img src="carBrandsLocatorPic.jpg" loading="lazy" alt="image" width="100%">
+                </div>
                 <h3 class="project-title">Car Brands Locator</h3>
                 <p class="project-desc">Car brands locator web app that helps users find the main office locations of
                     various automobile brands.</p>
@@ -95,7 +101,8 @@
             </div>
 
             <div class="project-card">
-                <div class="project-icon"><img src="keeunFoodWebsitePic.jpg" loading="lazy" alt="image" width="100%"></div>
+                <div class="project-icon"><img src="keeunFoodWebsitePic.jpg" loading="lazy" alt="image" width="100%">
+                </div>
                 <h3 class="project-title">Keenu Meals</h3>
                 <p class="project-desc">Responsive frontend for a food ordering website with a clean, light, and
                     classical theme, optimized
@@ -117,7 +124,8 @@
         </div>
         <div class="featured-card">
             <div class="featured-image" style="overflow: hidden;height: 230px;width: 100%;">
-                <img src="keenu-movies-android-app.jpg" loading="lazy" alt="image" height="100%" width="35%"></div>
+                <img src="keenu-movies-android-app.jpg" loading="lazy" alt="image" height="100%" width="35%">
+            </div>
             <div>
                 <span class="badge">Mobile App</span>
                 <h2 class="project-title">Keenu movies mobile app</h2>
@@ -144,6 +152,41 @@
     </div>
 </body>
 <script>
+    setupMobileNav();
+
+    function setupMobileNav() {
+        const nav = document.querySelector(".nav");
+        const menuToggle = document.querySelector(".menu-toggle");
+        const menu = document.querySelector(".menu");
+
+        if (!nav || !menuToggle || !menu) return;
+
+        function setMenu(open) {
+            nav.classList.toggle("menu-open", open);
+            document.body.classList.toggle("menu-open", open);
+            menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+            menuToggle.innerHTML = open
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        }
+
+        menuToggle.addEventListener("click", () => {
+            setMenu(!nav.classList.contains("menu-open"));
+        });
+
+        menu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => setMenu(false));
+        });
+
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") setMenu(false);
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) setMenu(false);
+        });
+    }
+
     const now = new Date();
     const time = now.toLocaleTimeString([], {
         hour: '2-digit',
