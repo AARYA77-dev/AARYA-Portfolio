@@ -16,8 +16,7 @@
     <div class="snow-container" id="snow"></div>
     <nav class="nav">
         <div class="logo"><a href="/">AARYA</a></div>
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu"
-            aria-expanded="false">
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
             <i class="fa-solid fa-bars"></i>
         </button>
         <div class="menu" id="navMenu">
@@ -25,7 +24,8 @@
             <a class="navlink" href="index.html#about">0.2 ABOUT = () =></a>
             <a class="navlink" href="index.html#skills">0.3 My Skills = () =></a>
             <a class="navlink" href="project.html">0.4 My Projects = () =></a>
-            <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing" class="resume-btn">RESUME</a>
+            <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing"
+                class="resume-btn">RESUME</a>
         </div>
     </nav>
     <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
@@ -152,6 +152,7 @@
 </script>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
     toastr.options = {
@@ -170,6 +171,7 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const analytics = getAnalytics(app);
 
     const form = document.getElementById("contactForm");
 
