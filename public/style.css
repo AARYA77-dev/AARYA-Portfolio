@@ -1307,6 +1307,12 @@ body.dark .featured-card-home {
     border-radius: var(--radius);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card .tech-stack {
+    margin-top: auto;
 }
 
 body.dark .project-card {
