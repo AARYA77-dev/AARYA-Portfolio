@@ -175,6 +175,21 @@
             </div>
         </div>
     </div>
+       <script type="module" >          
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+
+     const firebaseConfig = {
+        apiKey: "AIzaSyBNH5gm9WeqDEpynaLagYzub3jN4wUNUUo",
+        authDomain: "aarya-dev.firebaseapp.com",
+        projectId: "aarya-dev",
+        storageBucket: "aarya-dev.firebasestorage.app",
+        messagingSenderId: "4879273345",
+        appId: "1:4879273345:web:6f604065811acea1e52c80"
+    };
+ const app = initializeApp(firebaseConfig);
+
+const analytics = getAnalytics(app);
+    </script>
 </body>
 <script>
     setupMobileNav();
