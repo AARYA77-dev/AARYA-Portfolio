@@ -259,8 +259,7 @@
     <script type="module" >          
  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
 import {
-  getAnalytics,
-  isSupported
+  getAnalytics
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
      const firebaseConfig = {
         apiKey: "AIzaSyBNH5gm9WeqDEpynaLagYzub3jN4wUNUUo",
@@ -275,14 +274,6 @@ import {
 
 const analytics = getAnalytics(app);
 
-        isSupported().then((supported) => {
-  if (supported) {
-    const analytics = getAnalytics(app);
-    console.log("Analytics initialized");
-  } else {
-    console.log("Analytics not supported");
-  }
-});
     </script>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
