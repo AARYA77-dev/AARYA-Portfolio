@@ -1428,7 +1428,7 @@ body.dark .project-card {
     align-items: center;
     margin: 20px auto;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 40px;
     justify-content: space-between;
 }
@@ -1602,6 +1602,21 @@ textarea::-webkit-scrollbar-thumb {
 
 textarea::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
+}
+
+.contact-note{
+    margin-top:20px;
+    text-align:center;
+    color:#999;
+}
+
+.contact-note a{
+    color:#2f90ff;
+    font-weight:600;
+}
+
+.contact-note a:hover{
+    text-decoration:underline;
 }
 
 
