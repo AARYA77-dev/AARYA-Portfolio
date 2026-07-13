@@ -47,16 +47,16 @@
         <div class="contact-card">
             <form id="contactForm">
                 <div class="input-group">
-                    <label>Name</label>
-                    <input type="text" id="userName" placeholder="Enter your name" required>
+                    <label for="userName">Name</label>
+                    <input name="name" type="text" id="userName" placeholder="Enter your name" required>
                 </div>
                 <div class="input-group">
-                    <label>Email</label>
-                    <input type="email" id="userEmail" placeholder="email@example.com" required>
+                    <label for="userEmail">Email</label>
+                    <input name="email" type="email" id="userEmail" placeholder="email@example.com" required>
                 </div>
                 <div class="input-group">
-                    <label>Message</label>
-                    <textarea id="userMessage" rows="5" placeholder="What's on your mind?" required></textarea>
+                    <label for="userMessage">Message</label>
+                    <textarea name="message" id="userMessage" rows="5" placeholder="What's on your mind?" required></textarea>
                 </div>
                 <button type="submit" class="contact-btn" style="margin: 0 auto;">Send Message</button>
                 <p class="contact-note">
