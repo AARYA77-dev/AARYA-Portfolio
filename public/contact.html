@@ -13,7 +13,7 @@
 
 <body>
     <input type="checkbox" id="toggle" class="darkModeInput">
-    <div class="snow-container" id="snow"></div>
+    <canvas class="snow-container" id="snow-canvas"></canvas>
     <nav class="nav">
         <div class="logo"><a href="/">AARYA</a></div>
         <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
@@ -101,18 +101,6 @@
     });
     document.getElementById("time").textContent = time;
 
-    const THEME_KEY = "theme";
-    const toggle = document.getElementById("toggle");
-
-    function applyTheme(theme) {
-        const isDark = theme === "dark";
-        document.body.classList.toggle("dark", isDark);
-        if (toggle) toggle.checked = isDark;
-    }
-
-    const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
-    applyTheme(savedTheme);
-
     setupMobileNav();
 
     function setupMobileNav() {
@@ -147,6 +135,104 @@
             if (window.innerWidth > 768) setMenu(false);
         });
     }
+
+    // Canvas-based Snow Particle System for Contact Page
+    let snowCanvas = null;
+    let snowCtx = null;
+    let snowAnimationId = null;
+    let particles = [];
+    const maxParticles = 80;
+
+    function initSnowCanvas() {
+        snowCanvas = document.getElementById("snow-canvas");
+        if (!snowCanvas) return;
+        snowCtx = snowCanvas.getContext("2d");
+
+        resizeSnowCanvas();
+        window.addEventListener("resize", resizeSnowCanvas);
+
+        particles = [];
+        for (let i = 0; i < maxParticles; i++) {
+            particles.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                r: Math.random() * 3 + 1, 
+                d: Math.random() * 1 + 0.5,
+                o: Math.random() * 0.8 + 0.2
+            });
+        }
+
+        if (snowAnimationId) {
+            cancelAnimationFrame(snowAnimationId);
+        }
+        animateSnow();
+    }
+
+    function resizeSnowCanvas() {
+        if (snowCanvas) {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+        }
+    }
+
+    function animateSnow() {
+        if (!snowCanvas || !snowCtx) return;
+
+        snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+
+        for (let i = 0; i < maxParticles; i++) {
+            const p = particles[i];
+
+            snowCtx.beginPath();
+            snowCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+            snowCtx.fillStyle = `rgba(255, 255, 255, ${p.o})`;
+            snowCtx.fill();
+
+            p.y += p.d;
+            p.x += Math.sin(p.y / 30) * 0.5;
+
+            if (p.y > snowCanvas.height || p.x > snowCanvas.width || p.x < 0) {
+                particles[i] = {
+                    x: Math.random() * snowCanvas.width,
+                    y: -10,
+                    r: p.r,
+                    d: p.d,
+                    o: p.o
+                };
+            }
+        }
+
+        snowAnimationId = requestAnimationFrame(animateSnow);
+    }
+
+    function stopSnow() {
+        if (snowAnimationId) {
+            cancelAnimationFrame(snowAnimationId);
+            snowAnimationId = null;
+        }
+        if (snowCanvas && snowCtx) {
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+        }
+        window.removeEventListener("resize", resizeSnowCanvas);
+    }
+
+    const THEME_KEY = "theme";
+    const toggle = document.getElementById("toggle");
+
+    function applyTheme(theme) {
+        const isDark = theme === "dark";
+        document.body.classList.toggle("dark", isDark);
+        if (toggle) toggle.checked = isDark;
+        
+        if (isDark) {
+            initSnowCanvas();
+        } else {
+            stopSnow();
+        }
+    }
+
+    const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+    applyTheme(savedTheme);
 
     if (toggle) {
         toggle.addEventListener("change", () => {

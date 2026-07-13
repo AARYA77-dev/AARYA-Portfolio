@@ -221,28 +221,11 @@ h1 span {
 }
 
 /* Snow fall */
-.dark .snow-container {
+.snow-container {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
-}
-
-.dark .snowflake {
-    position: absolute;
-    top: -10px;
-    width: 6px;
-    height: 6px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: fall linear infinite;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh);
-    }
 }
 
 .darkModeInput {
@@ -1230,6 +1213,12 @@ body.dark .featured-card-home {
 .project-icon img,
 .about-img {
     transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.featured-image img,
+.project-icon img {
+    width: 100%;
+    height: auto;
 }
 
 .featured-card:hover .featured-image img,

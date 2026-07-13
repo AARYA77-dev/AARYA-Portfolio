@@ -7,9 +7,11 @@
     <title>AARYA | PORTFOLIO</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
 </head>
-<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <body class="animate-on-load">
     <!-- loader -->
@@ -49,7 +51,7 @@
         </div>
     </div>
     <input type="checkbox" id="toggle" class="darkModeInput">
-    <div class="snow-container" id="snow"></div>
+    <canvas class="snow-container" id="snow-canvas"></canvas>
     <nav class="nav">
         <div class="logo"><a href="/">AARYA</a></div>
         <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
@@ -88,7 +90,7 @@
             </div>
         </div>
         <div class="image-ring">
-            <img src="aarya.png" alt="Aarya" loading="lazy">
+            <img src="aarya.png" alt="Aarya" fetchpriority="high" width="350" height="350">
         </div>
     </section>
     <section id="about" class="grid stacking-card">
@@ -105,7 +107,7 @@
                         to do things. Fan of Gaming esports, outdoor activities and Web series.
                     </p>
                 </div>
-                <img src="legoImage.jpg" alt="About Image" width="200px" class="about-img" loading="lazy">
+                <img src="legoImage.jpg" alt="About Image" width="200" height="109" class="about-img" loading="lazy">
             </div>
         </div>
         <div class="card now">
@@ -171,7 +173,8 @@
     <section class="">
         <h2 class="project-maintitle animated-header">My Projects</h2>
         <div class="featured-card-home stacking-card optimize-visibility">
-            <div class="featured-image"><img src="electronicWebsitePc.jpg" loading="lazy" alt="image" width="100%">
+            <div class="featured-image"><img src="electronicWebsitePc.jpg" loading="lazy" alt="image" width="1920"
+                    height="910">
             </div>
             <div>
                 <span class="badge">Web App</span>
@@ -199,7 +202,8 @@
             </div>
         </div>
         <div class="featured-card-home stacking-card optimize-visibility">
-            <div class="featured-image"><img src="family-management-app.jpg" loading="lazy" alt="image" width="100%">
+            <div class="featured-image"><img src="family-management-app.jpg" loading="lazy" alt="image" width="1847"
+                    height="962">
             </div>
             <div>
                 <span class="badge">Web App</span>
@@ -256,28 +260,26 @@
             </div>
         </div>
     </section>
-    <script type="module" >          
- import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import {
-  getAnalytics
-} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
-     const firebaseConfig = {
-        apiKey: "AIzaSyBNH5gm9WeqDEpynaLagYzub3jN4wUNUUo",
-        authDomain: "aarya-dev.firebaseapp.com",
-        projectId: "aarya-dev",
-        storageBucket: "aarya-dev.firebasestorage.app",
-        messagingSenderId: "4879273345",
-        measurementId: "G-CEEVTM2ZN4",
-        appId: "1:4879273345:web:6f604065811acea1e52c80"
-    };
- const app = initializeApp(firebaseConfig);
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import {
+            getAnalytics
+        } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyBNH5gm9WeqDEpynaLagYzub3jN4wUNUUo",
+            authDomain: "aarya-dev.firebaseapp.com",
+            projectId: "aarya-dev",
+            storageBucket: "aarya-dev.firebasestorage.app",
+            messagingSenderId: "4879273345",
+            measurementId: "G-CEEVTM2ZN4",
+            appId: "1:4879273345:web:6f604065811acea1e52c80"
+        };
+        const app = initializeApp(firebaseConfig);
 
-const analytics = getAnalytics(app);
+        const analytics = getAnalytics(app);
 
     </script>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 <script>
     // Initialize Lenis
     const lenis = new Lenis({
@@ -593,17 +595,98 @@ const analytics = getAnalytics(app);
         });
     }
 
+    // Canvas-based Snow Particle System for Contact Page
+    let snowCanvas = null;
+    let snowCtx = null;
+    let snowAnimationId = null;
+    let particles = [];
+    const maxParticles = 80;
+
+    function initSnowCanvas() {
+        snowCanvas = document.getElementById("snow-canvas");
+        if (!snowCanvas) return;
+        snowCtx = snowCanvas.getContext("2d");
+
+        resizeSnowCanvas();
+        window.addEventListener("resize", resizeSnowCanvas);
+
+        particles = [];
+        for (let i = 0; i < maxParticles; i++) {
+            particles.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                r: Math.random() * 3 + 1,
+                d: Math.random() * 1 + 0.5,
+                o: Math.random() * 0.8 + 0.2
+            });
+        }
+
+        if (snowAnimationId) {
+            cancelAnimationFrame(snowAnimationId);
+        }
+        animateSnow();
+    }
+
+    function resizeSnowCanvas() {
+        if (snowCanvas) {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+        }
+    }
+
+    function animateSnow() {
+        if (!snowCanvas || !snowCtx) return;
+
+        snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+
+        for (let i = 0; i < maxParticles; i++) {
+            const p = particles[i];
+
+            snowCtx.beginPath();
+            snowCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+            snowCtx.fillStyle = `rgba(255, 255, 255, ${p.o})`;
+            snowCtx.fill();
+
+            p.y += p.d;
+            p.x += Math.sin(p.y / 30) * 0.5;
+
+            if (p.y > snowCanvas.height || p.x > snowCanvas.width || p.x < 0) {
+                particles[i] = {
+                    x: Math.random() * snowCanvas.width,
+                    y: -10,
+                    r: p.r,
+                    d: p.d,
+                    o: p.o
+                };
+            }
+        }
+
+        snowAnimationId = requestAnimationFrame(animateSnow);
+    }
+
+    function stopSnow() {
+        if (snowAnimationId) {
+            cancelAnimationFrame(snowAnimationId);
+            snowAnimationId = null;
+        }
+        if (snowCanvas && snowCtx) {
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+        }
+        window.removeEventListener("resize", resizeSnowCanvas);
+    }
+
     const THEME_KEY = "theme";
     const toggle = document.getElementById("toggle");
-    const snow = document.getElementById("snow");
 
     function applyTheme(theme) {
         const isDark = theme === "dark";
         document.body.classList.toggle("dark", isDark);
-        if (toggle) toggle.checked = isDark
-        if (snow) {
-            if (isDark) createSnow();
-            else snow.innerHTML = "";
+        if (toggle) toggle.checked = isDark;
+
+        if (isDark) {
+            initSnowCanvas();
+        } else {
+            stopSnow();
         }
     }
 
@@ -616,18 +699,6 @@ const analytics = getAnalytics(app);
             localStorage.setItem(THEME_KEY, theme);
             applyTheme(theme);
         });
-    }
-
-    function createSnow() {
-        snow.innerHTML = "";
-        for (let i = 0; i < 80; i++) {
-            const flake = document.createElement("div");
-            flake.className = "snowflake";
-            flake.style.left = Math.random() * 100 + "vw";
-            flake.style.animationDuration = 5 + Math.random() * 10 + "s";
-            flake.style.opacity = Math.random();
-            snow.appendChild(flake);
-        }
     }
 </script>
 
