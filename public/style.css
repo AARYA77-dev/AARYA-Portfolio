@@ -1193,6 +1193,13 @@ body.dark .featured-card {
 
 body.dark .featured-card-home {
     background: #1f2937;
+    color: #f8fafc;
+}
+
+body:not(.dark) .featured-card-home {
+    background: #0f2b68;
+    color: #f8fafc;
+    border-color: rgba(248, 250, 252, 0.24);
 }
 
 .featured-card:hover {
@@ -1228,17 +1235,22 @@ body.dark .featured-card-home {
 }
 
 .badge {
-    background: rgba(59, 130, 246, 0.15);
-    color: var(--primary);
+    background: rgba(15, 23, 42, 0.88);
+    color: #f8fafc;
     font-size: 12px;
     padding: 6px 12px;
     border-radius: 999px;
     display: inline-block;
     margin-bottom: 10px;
+    border: 1px solid rgba(248, 250, 252, 0.22);
 }
 
+.project-title {
+    color: #f8fafc;
+}
 
 .project-desc {
+    color: #e2e8f0;
     line-height: 1.6;
     margin-bottom: 16px;
 }
@@ -1251,32 +1263,41 @@ body.dark .featured-card-home {
 }
 
 .tech {
-    background: #020617;
+    background: rgba(248, 250, 252, 0.16);
     padding: 6px 12px;
     font-size: 13px;
     border-radius: 999px;
-    color: #c7d2fe;
+    color: #f8fafc;
+    border: 1px solid rgba(248, 250, 252, 0.22);
 }
 
 .project-buttons {
     display: flex;
-    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
 }
 
 .btn-projects {
-    display: flex;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    padding: 12px 20px;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 12px 16px;
+    margin: 2px;
     cursor: pointer;
     background: blue;
-    color: #ffffff;
+    color: #f8fafc;
     font-size: 20px;
     font-weight: 500;
     text-decoration: none;
     border: none;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
+    box-shadow: 0 0 15px rgba(15, 23, 42, 0.28);
     transition: all 0.3s ease;
+    touch-action: manipulation;
 }
 
 .btn-projects:hover {
@@ -1318,6 +1339,16 @@ body.dark .project-card {
     margin-bottom: 14px;
 }
 
+.projects-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.projects-cta .contact-btn {
+    margin: 0;
+}
+
 @media (max-width: 900px) {
     .featured-card {
         grid-template-columns: 1fr;
@@ -1327,7 +1358,7 @@ body.dark .project-card {
 
 /* ABOUT */
 .shine-text {
-    color: blue;
+    color: #7cc8ff;
     cursor: pointer;
     font-weight: 700;
     position: relative;
@@ -1342,7 +1373,7 @@ body.dark .project-card {
     bottom: 0;
     width: 0;
     height: 2.5px;
-    background: blue;
+    background: #7cc8ff;
     transition: all .25s cubic-bezier(.645, .045, .355, 1);
 }
 
@@ -1391,6 +1422,16 @@ body.dark .project-card {
 
 .now-para {
     margin-bottom: 55px;
+}
+
+.now-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.now-actions .contact-btn {
+    margin: 0;
 }
 
 .now h3 {
@@ -1467,11 +1508,14 @@ body.dark .social-icon:hover {
 }
 
 .contact-btn {
-    display: flex;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    width: 170px;
+    width: fit-content;
+    min-width: 170px;
+    min-height: 48px;
     margin: 18px auto;
-    padding: 12px 20px;
+    padding: 14px 24px;
     cursor: pointer;
     background: blue;
     color: #ffffff;
@@ -1482,6 +1526,8 @@ body.dark .social-icon:hover {
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
     transition: all 0.3s ease;
+    touch-action: manipulation;
+    line-height: 1;
 }
 
 .contact-btn:hover {
