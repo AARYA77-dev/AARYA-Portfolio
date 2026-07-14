@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Aarya's Portfolio - Showcasing my projects, skills, and experience as a developer. Explore my work and learn more about me." />
     <title>AARYA | CONTACT</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,85 +14,95 @@
 </head>
 
 <body>
-    <input type="checkbox" id="toggle" class="darkModeInput">
     <canvas class="snow-container" id="snow-canvas"></canvas>
-    <nav class="nav">
-        <div class="logo"><a href="/">AARYA</a></div>
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="menu" id="navMenu">
-            <a class="navlink" href="/">0.1 Home = () =></a>
-            <a class="navlink" href="index.html#about">0.2 ABOUT = () =></a>
-            <a class="navlink" href="index.html#skills">0.3 My Skills = () =></a>
-            <a class="navlink" href="project.html">0.4 My Projects = () =></a>
-            <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing"
-                class="resume-btn">RESUME</a>
-        </div>
-    </nav>
-    <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
-            <div class="circle">
-                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
-                </svg>
-                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
-                        clip-rule="evenodd" />
-                </svg>
+    <header>
+        <input type="checkbox" id="toggle" class="darkModeInput">
+        <nav class="nav">
+            <div class="logo"><a href="/">AARYA</a></div>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu"
+                aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="menu" id="navMenu">
+                <a class="navlink" href="/">0.1 Home = () =></a>
+                <a class="navlink" href="index.html#about">0.2 ABOUT = () =></a>
+                <a class="navlink" href="index.html#skills">0.3 My Skills = () =></a>
+                <a class="navlink" href="project.html">0.4 My Projects = () =></a>
+                <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing"
+                    class="resume-btn">RESUME</a>
             </div>
-        </label>
-    </div>
-    <div class="contact-page-container">
-        <h1 class="title">&lt;Contact Me /&gt;</h1>
-        <div class="contact-card">
-            <form id="contactForm">
-                <div class="input-group">
-                    <label for="userName">Name</label>
-                    <input name="name" autocomplete="name" type="text" id="userName" placeholder="Enter your name" required>
+        </nav>
+    </header>
+    <main>
+        <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
+                <div class="circle">
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+                    </svg>
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
+                            clip-rule="evenodd" />
+                    </svg>
                 </div>
-                <div class="input-group">
-                    <label for="userEmail">Email</label>
-                    <input name="email" autocomplete="email" type="email" id="userEmail" placeholder="email@example.com" required>
-                </div>
-                <div class="input-group">
-                    <label for="userMessage">Message</label>
-                    <textarea name="message" id="userMessage" rows="5" placeholder="What's on your mind?" required></textarea>
-                </div>
-                <button type="submit" class="contact-btn" style="margin: 0 auto;">Send Message</button>
-                <p class="contact-note">
-                    Prefer email?
-                    <a href="mailto:hireaarya.dev@gmail.com">hireaarya.dev@gmail.com</a>
-                </p>
-            </form>
+            </label>
         </div>
-    </div>
-    <section class="optimize-footer">
+        <div class="contact-page-container">
+            <h1 class="title">&lt;Contact Me /&gt;</h1>
+            <div class="contact-card">
+                <form id="contactForm">
+                    <div class="input-group">
+                        <label for="userName">Name</label>
+                        <input name="name" autocomplete="name" type="text" id="userName" placeholder="Enter your name"
+                            required>
+                    </div>
+                    <div class="input-group">
+                        <label for="userEmail">Email</label>
+                        <input name="email" autocomplete="email" type="email" id="userEmail"
+                            placeholder="email@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="userMessage">Message</label>
+                        <textarea name="message" id="userMessage" rows="5" placeholder="What's on your mind?"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="contact-btn" style="margin: 0 auto;">Send Message</button>
+                    <p class="contact-note">
+                        Prefer email?
+                        <a href="mailto:hireaarya.dev@gmail.com">hireaarya.dev@gmail.com</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer class="optimize-footer">
         <div class="card contact">
             <h1>Social Link</h1>
             <div class="social-icons">
-                <a href="https://instagram.com/keenunisha" target="_blank">
-                    <i class="fa-brands fa-instagram social-icon"></i>
+                <a href="https://instagram.com/keenunisha" target="_blank" aria-label="Visit my Instagram profile">
+                    <i class="fa-brands fa-instagram social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/aarya-thkur-45884a236" target="_blank">
-                    <i class="fa-brands fa-linkedin social-icon"></i>
+                <a href="https://www.linkedin.com/in/aarya-thkur-45884a236" target="_blank"
+                    aria-label="Visit my LinkedIn profile">
+                    <i class="fa-brands fa-linkedin social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="https://discordapp.com/users/1453225181362262166" target="_blank">
-                    <i class="fa-brands fa-discord social-icon"></i>
+                <a href="https://discordapp.com/users/1453225181362262166" target="_blank"
+                    aria-label="Visit my Discord profile">
+                    <i class="fa-brands fa-discord social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="https://github.com/AARYA77-dev" target="_blank">
-                    <i class="fa-brands fa-github social-icon"></i>
+                <a href="https://github.com/AARYA77-dev" target="_blank" aria-label="Visit my GitHub profile">
+                    <i class="fa-brands fa-github social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="https://dev.to/aarya77dev" target="_blank">
-                    <i class="fa-brands fa-dev social-icon"></i>
+                <a href="https://dev.to/aarya77dev" target="_blank" aria-label="Visit my DEV profile">
+                    <i class="fa-brands fa-dev social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="mailto:hireaarya.dev@gmail.com" target="_blank">
-                    <i class="fa-regular fa-envelope social-icon"></i>
+                <a href="mailto:hireaarya.dev@gmail.com" target="_blank" aria-label="Send me an email">
+                    <i class="fa-regular fa-envelope social-icon" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
-    </section>
+    </footer>
 </body>
 <script>
     const now = new Date();
@@ -156,7 +168,7 @@
             particles.push({
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
-                r: Math.random() * 3 + 1, 
+                r: Math.random() * 3 + 1,
                 d: Math.random() * 1 + 0.5,
                 o: Math.random() * 0.8 + 0.2
             });
@@ -223,7 +235,7 @@
         const isDark = theme === "dark";
         document.body.classList.toggle("dark", isDark);
         if (toggle) toggle.checked = isDark;
-        
+
         if (isDark) {
             initSnowCanvas();
         } else {
@@ -246,8 +258,8 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
     import {
-  getAnalytics
-} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+        getAnalytics
+    } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
     toastr.options = {

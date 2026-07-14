@@ -4,192 +4,210 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aarya's Portfolio - Showcasing my projects, skills, and experience as a developer. Explore my work and learn more about me." />
     <title>AARYA | PROJECTS</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-    <input type="checkbox" id="toggle" class="darkModeInput">
-    <nav class="nav">
-        <div class="logo"><a href="/">AARYA</a></div>
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="menu" id="navMenu">
-            <a class="navlink" href="/">0.1 Home = () =></a>
-            <a class="navlink" href="index.html#about">0.2 About = () =></a>
-            <a class="navlink" href="index.html#skills">0.3 My Skills = () =></a>
-            <a class="navlink" href="contact.html">0.4 Contact = () =></a>
-            <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing"
-                class="resume-btn">RESUME</a>
+    <header>
+        <input type="checkbox" id="toggle" class="darkModeInput">
+        <nav class="nav">
+            <div class="logo"><a href="/">AARYA</a></div>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu"
+                aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="menu" id="navMenu">
+                <a class="navlink" href="/">0.1 Home = () =></a>
+                <a class="navlink" href="index.html#about">0.2 About = () =></a>
+                <a class="navlink" href="index.html#skills">0.3 My Skills = () =></a>
+                <a class="navlink" href="contact.html">0.4 Contact = () =></a>
+                <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing"
+                    class="resume-btn">RESUME</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
+                <div class="circle">
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+                    </svg>
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </label>
         </div>
-    </nav>
-    <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
-            <div class="circle">
-                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
-                </svg>
-                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
-                        clip-rule="evenodd" />
-                </svg>
-            </div>
-        </label>
-    </div>
-    <div class="projects-header-container">
-        <h1 class="title">&lt;My Projects /&gt;</h1>
-    </div>
-    <div class="projects-container">
-        <p class="page-subtitle">
-            A showcase of my work, highlighting my growth as a developer through continuous learning and real-world
-            projects.
-        </p>
+        <div class="projects-header-container">
+            <h1 class="title">&lt;My Projects /&gt;</h1>
+        </div>
+        <div class="projects-container">
+            <p class="page-subtitle">
+                A showcase of my work, highlighting my growth as a developer through continuous learning and real-world
+                projects.
+            </p>
 
-        <span class="featured-label">⭐ Featured Projects</span>
+            <span class="featured-label">⭐ Featured Projects</span>
 
-        <div class="featured-card">
-            <div class="featured-image"><img src="electronicWebsitePc.jpg" loading="lazy" alt="image" width="1920" height="910">
-            </div>
-            <div>
-                <span class="badge">Web App</span>
-                <h2 class="project-title">Singitronic</h2>
-                <p class="project-desc">
-                    Built a full-stack e-commerce web application with secure authentication, product catalog, cart, and
-                    wishlist functionality. Implemented dynamic pricing, tax calculation, and a responsive checkout
-                    experience for seamless order management.
-                </p>
-                <div class="tech-stack">
-                    <span class="tech">NextJS</span>
-                    <span class="tech">MySql</span>
-                    <span class="tech">ExpressJS</span>
-                    <span class="tech">NodeJS</span>
-                    <span class="tech">tailwindcss</span>
+            <div class="featured-card">
+                <div class="featured-image"><img src="electronicWebsitePc.jpg" loading="lazy" alt="image" width="1920"
+                        height="910">
                 </div>
-                <div class="project-buttons">
-                    <a href="https://electronic-website-frontend.vercel.app" class="btn-projects" target="_blank">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    <a href="https://github.com/AARYA77-dev/electronic-website-frontend" class="btn-projects"
-                        target="_blank">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
+                <div>
+                    <span class="badge">Web App</span>
+                    <h2 class="project-title">Singitronic</h2>
+                    <p class="project-desc">
+                        Built a full-stack e-commerce web application with secure authentication, product catalog, cart,
+                        and
+                        wishlist functionality. Implemented dynamic pricing, tax calculation, and a responsive checkout
+                        experience for seamless order management.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech">NextJS</span>
+                        <span class="tech">MySql</span>
+                        <span class="tech">ExpressJS</span>
+                        <span class="tech">NodeJS</span>
+                        <span class="tech">tailwindcss</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://electronic-website-frontend.vercel.app" class="btn-projects" target="_blank" aria-label="Visit the Singitronic website">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        <a href="https://github.com/AARYA77-dev/electronic-website-frontend" class="btn-projects"
+                            target="_blank" aria-label="View the Singitronic GitHub repository">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-grid">
+                <div class="project-card optimize-visibility">
+                    <div class="project-icon"><img src="family-management-app.jpg" loading="lazy" alt="image"
+                            width="1847" height="962">
+                    </div>
+                    <span class="badge">Web App</span>
+                    <h3 class="project-title">Family Management App</h3>
+                    <p class="project-desc"> A family management website with a clean, light, and classical theme. Used
+                        angular concepts like
+                        CRUD operations,
+                        services, guards, modules and components to create a seamless user experience. Applied features
+                        such as user authentication, Bootstrap css for better UI and FireBase for database and hosting.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech">Angular</span>
+                        <span class="tech">Firebase</span>
+                        <span class="tech">Bootstrap</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://family-management-app-33038.web.app/login" class="btn-projects"
+                            target="_blank" aria-label="Visit the Family Management App website">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        <a href="https://github.com/AARYA77-dev/family-management-app" class="btn-projects"
+                            target="_blank" aria-label="View the Family Management App GitHub repository">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card optimize-visibility">
+                    <div class="project-icon"><img src="carBrandsLocatorPic.jpg" loading="lazy" alt="image" width="1920"
+                            height="911">
+                    </div>
+                    <span class="badge">Website</span>
+                    <h3 class="project-title">Car Brands Locator</h3>
+                    <p class="project-desc">Car brands locator web app that helps users find the main office locations
+                        of
+                        various automobile brands.</p>
+                    <div class="tech-stack">
+                        <span class="tech">Html</span>
+                        <span class="tech">Css</span>
+                        <span class="tech">JavaScript</span>
+                        <span class="tech">Maptiler API</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://aarya77-dev.github.io/cars-brands-locator" class="btn-projects"
+                            target="_blank" aria-label="Visit the Car Brands Locator website">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        <a href="https://github.com/AARYA77-dev/cars-brands-locator" class="btn-projects"
+                            target="_blank" aria-label="View the Car Brands Locator GitHub repository">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card optimize-visibility">
+                    <div class="project-icon"><img src="keeunFoodWebsitePic.jpg" loading="lazy" alt="image" width="1895"
+                            height="912">
+                    </div>
+                    <span class="badge">Static Page</span>
+                    <h3 class="project-title">Keenu Meals</h3>
+                    <p class="project-desc">Responsive frontend for a food ordering website with a clean, light, and
+                        classical theme, optimized
+                        for all devices.</p>
+                    <div class="tech-stack">
+                        <span class="tech">Html</span>
+                        <span class="tech">Css</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://aarya77-dev.github.io/Keenuprimefood77.github.io/" class="btn-projects"
+                            target="_blank" aria-label="Visit the Keenu Meals website">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        <a href="https://github.com/AARYA77-dev/Keenuprimefood77.github.io" class="btn-projects"
+                            target="_blank" aria-label="View the Keenu Meals GitHub repository">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="featured-card optimize-visibility">
+                <div class="featured-image" style="overflow: hidden;height: 230px;width: 100%;">
+                    <img src="keenu-movies-android-app.jpg" loading="lazy" alt="image" width="1080" height="2340"
+                        style="height: 100%; width: 35%; object-fit: cover;">
+                </div>
+                <div>
+                    <span class="badge">Mobile App</span>
+                    <h2 class="project-title">Keenu movies mobile app</h2>
+                    <p class="project-desc">
+                        Built a React Native mobile movie application featuring advanced search functionality, trending
+                        movie listings, and detailed movie information screens.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech">React-Native</span>
+                        <span class="tech">Appwrite</span>
+                        <span class="tech">Expo</span>
+                        <span class="tech">tailwindcss</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://github.com/AARYA77-dev/keenu-movies-android-app" class="btn-projects"
+                            target="_blank" aria-label="View the Keenu movies mobile app GitHub repository">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="project-grid">
-            <div class="project-card optimize-visibility">
-                <div class="project-icon"><img src="family-management-app.jpg" loading="lazy" alt="image" width="1847" height="962">
-                </div>
-                <span class="badge">Web App</span>
-                <h3 class="project-title">Family Management App</h3>
-                <p class="project-desc"> A family management website with a clean, light, and classical theme. Used
-                    angular concepts like
-                    CRUD operations,
-                    services, guards, modules and components to create a seamless user experience. Applied features
-                    such as user authentication, Bootstrap css for better UI and FireBase for database and hosting.</p>
-                <div class="tech-stack">
-                    <span class="tech">Angular</span>
-                    <span class="tech">Firebase</span>
-                    <span class="tech">Bootstrap</span>
-                </div>
-                <div class="project-buttons">
-                    <a href="https://family-management-app-33038.web.app/login" class="btn-projects" target="_blank">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    <a href="https://github.com/AARYA77-dev/family-management-app" class="btn-projects" target="_blank">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="project-card optimize-visibility">
-                <div class="project-icon"><img src="carBrandsLocatorPic.jpg" loading="lazy" alt="image" width="1920" height="911">
-                </div>
-                        <span class="badge">Website</span>
-                <h3 class="project-title">Car Brands Locator</h3>
-                <p class="project-desc">Car brands locator web app that helps users find the main office locations of
-                    various automobile brands.</p>
-                <div class="tech-stack">
-                    <span class="tech">Html</span>
-                    <span class="tech">Css</span>
-                    <span class="tech">JavaScript</span>
-                    <span class="tech">Maptiler API</span>
-                </div>
-                <div class="project-buttons">
-                    <a href="https://aarya77-dev.github.io/cars-brands-locator" class="btn-projects" target="_blank">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    <a href="https://github.com/AARYA77-dev/cars-brands-locator" class="btn-projects" target="_blank">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                </div>
-            </div>
+    </main>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import {
+            getAnalytics
+        } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyBNH5gm9WeqDEpynaLagYzub3jN4wUNUUo",
+            authDomain: "aarya-dev.firebaseapp.com",
+            projectId: "aarya-dev",
+            storageBucket: "aarya-dev.firebasestorage.app",
+            messagingSenderId: "4879273345",
+            measurementId: "G-CEEVTM2ZN4",
+            appId: "1:4879273345:web:6f604065811acea1e52c80"
+        };
+        const app = initializeApp(firebaseConfig);
 
-            <div class="project-card optimize-visibility">
-                <div class="project-icon"><img src="keeunFoodWebsitePic.jpg" loading="lazy" alt="image" width="1895" height="912">
-                </div>
-                        <span class="badge">Static Page</span>
-                <h3 class="project-title">Keenu Meals</h3>
-                <p class="project-desc">Responsive frontend for a food ordering website with a clean, light, and
-                    classical theme, optimized
-                    for all devices.</p>
-                <div class="tech-stack">
-                    <span class="tech">Html</span>
-                    <span class="tech">Css</span>
-                </div>
-                <div class="project-buttons">
-                    <a href="https://aarya77-dev.github.io/Keenuprimefood77.github.io/" class="btn-projects"
-                        target="_blank">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    <a href="https://github.com/AARYA77-dev/Keenuprimefood77.github.io" class="btn-projects"
-                        target="_blank">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="featured-card optimize-visibility">
-            <div class="featured-image" style="overflow: hidden;height: 230px;width: 100%;">
-                <img src="keenu-movies-android-app.jpg" loading="lazy" alt="image" width="1080" height="2340" style="height: 100%; width: 35%; object-fit: cover;">
-            </div>
-            <div>
-                <span class="badge">Mobile App</span>
-                <h2 class="project-title">Keenu movies mobile app</h2>
-                <p class="project-desc">
-                    Built a React Native mobile movie application featuring advanced search functionality, trending
-                    movie listings, and detailed movie information screens.
-                </p>
-                <div class="tech-stack">
-                    <span class="tech">React-Native</span>
-                    <span class="tech">Appwrite</span>
-                    <span class="tech">Expo</span>
-                    <span class="tech">tailwindcss</span>
-                </div>
-                <div class="project-buttons">
-                    <a href="https://github.com/AARYA77-dev/keenu-movies-android-app" class="btn-projects"
-                        target="_blank">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-       <script type="module" >          
- import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import {
-  getAnalytics
-} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
-     const firebaseConfig = {
-        apiKey: "AIzaSyBNH5gm9WeqDEpynaLagYzub3jN4wUNUUo",
-        authDomain: "aarya-dev.firebaseapp.com",
-        projectId: "aarya-dev",
-        storageBucket: "aarya-dev.firebasestorage.app",
-        messagingSenderId: "4879273345",
-        measurementId: "G-CEEVTM2ZN4",
-        appId: "1:4879273345:web:6f604065811acea1e52c80"
-    };
- const app = initializeApp(firebaseConfig);
-
-const analytics = getAnalytics(app);
+        const analytics = getAnalytics(app);
     </script>
 </body>
 <script>

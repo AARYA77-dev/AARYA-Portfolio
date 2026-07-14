@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Aarya's Portfolio - Showcasing my projects, skills, and experience as a developer. Explore my work and learn more about me." />
     <title>AARYA | PORTFOLIO</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -50,208 +52,223 @@
             </div>
         </div>
     </div>
-    <input type="checkbox" id="toggle" class="darkModeInput">
     <canvas class="snow-container" id="snow-canvas"></canvas>
-    <nav class="nav">
-        <div class="logo"><a href="/">AARYA</a></div>
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="menu" id="navMenu">
-            <a class="navlink" href="project.html">0.1 Projects = () =></a>
-            <a class="navlink" onclick="scrollToAbout()">0.2 About = () =></a>
-            <a class="navlink" onclick="scrollToSkills()">0.3 My Skills = () =></a>
-            <a class="navlink" href="contact.html">0.4 Contact = () =></a>
-            <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing"
-                target="_blank" class="resume-btn">RESUME</a>
-        </div>
-    </nav>
-    <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
-            <div class="circle">
-                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
-                </svg>
-                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
-                        clip-rule="evenodd" />
-                </svg>
+    <header>
+        <input type="checkbox" id="toggle" class="darkModeInput">
+        <nav class="nav">
+            <div class="logo"><a href="/">AARYA</a></div>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="navMenu"
+                aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="menu" id="navMenu">
+                <a class="navlink" href="project.html">0.1 Projects = () =></a>
+                <a class="navlink" href="#about" onclick="scrollToAbout()">0.2 About = () =></a>
+                <a class="navlink" href="#skills" onclick="scrollToSkills()">0.3 My Skills = () =></a>
+                <a class="navlink" href="contact.html">0.4 Contact = () =></a>
+                <a href="https://docs.google.com/document/d/1TY298r-MzSnmakYuki44P1H-Vk1bLtRUUevDLhmkiDQ/edit?usp=sharing"
+                    target="_blank" class="resume-btn">RESUME</a>
             </div>
-        </label>
-    </div>
-    <section id="hero" class="hero">
-        <div class="hero-left">
-            <h2 class="title">&lt;Full Stack Developer /&gt;</h2>
-            <div class="card hero-card">
-                <h3>Hi, I'm Aarya</h3>
-                <h2 class="second-title">Software Engineer</h2>
-                <div class="animated-text">I make your apps<span></span></div>
-            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="card info-header">Indore, MP<p id="time"></p> <label class="darkModeLabel" for="toggle">
+                <div class="circle">
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+                    </svg>
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </label>
         </div>
-        <div class="image-ring">
+        <section id="hero" class="hero">
+            <div class="hero-left">
+                <h2 class="title">&lt;Full Stack Developer /&gt;</h2>
+                <div class="card hero-card">
+                    <h3>Hi, I'm Aarya</h3>
+                    <h2 class="second-title">Software Engineer</h2>
+                    <div class="animated-text">I make your apps<span></span></div>
+                </div>
+            </div>
+            <div class="image-ring">
             <img src="aarya.png" alt="Aarya" fetchpriority="high" width="350" height="350">
-        </div>
-    </section>
-    <section id="about" class="grid stacking-card">
-        <div class="card about">
-            <h2>ABOUT ME. . .</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Hello! My name is <span class="shine-text">Aarya</span> and I’m a Full-Stack Developer located
-                        in India and I have
-                        a serious
-                        passion for UI effects, animations and creating intuitive, dynamic user experiences.
-                        Well-organised person, creative problem-solver who thrives on building and finding better ways
-                        to do things. Fan of Gaming esports, outdoor activities and Web series.
-                    </p>
-                </div>
-                <img src="legoImage.jpg" alt="About Image" width="200" height="109" class="about-img" loading="lazy">
-            </div>
-        </div>
-        <div class="card now">
-            <h2>NOW. . .</h2>
-            <p class="now-para">
-                I’m currently open to new opportunities like projects, freelance, or contract work. Whether you have a
-                question or just want to say hi, feel free to reach out.I’d be happy to connect.<br />
-            </p>
-            <a class="contact-btn" href="contact.html">Contact Me</a>
-        </div>
-    </section>
-    <!-- skill planet -->
-    <section id="skills" class="skills-section stacking-card">
-        <h2 class="skills-title animated-header">Technical Skills</h2>
-        <div class="skill-list">
-            <div>
-                <span>&lt;ul&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>postman<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>Tailwind<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>CCS3<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>HTML5<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>JavaScript<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>Figma<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>Bootstrap<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>Supabase<span>&lt;/li&gt;</span></br>
-                <span>&lt;/ul&gt;</span>
-            </div>
-            <div>
-
-                <span>&lt;ul&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>TypeScript<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>NextJS<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>ReactJS<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>Angular<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>gsap<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>JIRA<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>Appwrite<span>&lt;/li&gt;</span></br>
-                <span>&lt;/ul&gt;</span>
-            </div>
-            <div>
-
-                <span>&lt;ul&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>NodeJS<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>MongoDB<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>React-Native<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>Git<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>ThreeJS<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>Firebase<span>&lt;/li&gt;</span></br>
-                <span class="code-line">&lt;li&gt;</span>Github<span>&lt;/li&gt;</span></br>
-                <span>&lt;/ul&gt;</span>
-            </div>
-        </div>
-        <section class="skill-planet stacking-card">
-            <div id="three-container" class="optimize-visibility"></div>
-            <div class="orbit-container">
-                <div class="core" onclick="scrollToHero()">AARYA</div>
-                <div class="orbit" id="orbit">
-                </div>
             </div>
         </section>
+        <section id="about" class="grid stacking-card">
+            <div class="card about">
+                <h2>ABOUT ME. . .</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Hello! My name is <span class="shine-text">Aarya</span> and I’m a Full-Stack Developer
+                            located
+                            in India and I have
+                            a serious
+                            passion for UI effects, animations and creating intuitive, dynamic user experiences.
+                            Well-organised person, creative problem-solver who thrives on building and finding better
+                            ways
+                            to do things. Fan of Gaming esports, outdoor activities and Web series.
+                        </p>
+                    </div>
+                    <img src="legoImage.jpg" alt="About Image" width="200" height="109" class="about-img"
+                        loading="lazy">
+                </div>
+            </div>
+            <div class="card now">
+                <h2>NOW. . .</h2>
+                <p class="now-para">
+                    I’m currently open to new opportunities like projects, freelance, or contract work. Whether you have
+                    a
+                    question or just want to say hi, feel free to reach out.I’d be happy to connect.<br />
+                </p>
+                <a class="contact-btn" href="contact.html">Contact Me</a>
+            </div>
+        </section>
+        <!-- skill planet -->
+        <section id="skills" class="skills-section stacking-card">
+            <h2 class="skills-title animated-header">Technical Skills</h2>
+            <div class="skill-list">
+                <div>
+                    <span>&lt;ul&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>postman<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>Tailwind<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>CCS3<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>HTML5<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>JavaScript<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>Figma<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>Bootstrap<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>Supabase<span>&lt;/li&gt;</span></br>
+                    <span>&lt;/ul&gt;</span>
+                </div>
+                <div>
 
-    </section>
-    <section class="">
-        <h2 class="project-maintitle animated-header">My Projects</h2>
-        <div class="featured-card-home stacking-card optimize-visibility">
-            <div class="featured-image"><img src="electronicWebsitePc.jpg" loading="lazy" alt="image" width="1920"
-                    height="910">
-            </div>
-            <div>
-                <span class="badge">Web App</span>
-                <h2 class="project-title">Singitronic</h2>
-                <p class="project-desc">
-                    Built a full-stack e-commerce web application with secure authentication, product catalog, cart, and
-                    wishlist functionality. Implemented dynamic pricing, tax calculation, and a responsive checkout
-                    experience for seamless order management.
-                </p>
-                <div class="tech-stack">
-                    <span class="tech">NextJS</span>
-                    <span class="tech">MySql</span>
-                    <span class="tech">ExpressJS</span>
-                    <span class="tech">NodeJS</span>
-                    <span class="tech">tailwindcss</span>
+                    <span>&lt;ul&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>TypeScript<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>NextJS<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>ReactJS<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>Angular<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>gsap<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>JIRA<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>Appwrite<span>&lt;/li&gt;</span></br>
+                    <span>&lt;/ul&gt;</span>
                 </div>
-                <div class="project-buttons">
-                    <a href="https://electronic-website-frontend.vercel.app" class="btn-projects" target="_blank">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    <a href="https://github.com/AARYA77-dev/electronic-website-frontend" class="btn-projects"
-                        target="_blank">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
+                <div>
+
+                    <span>&lt;ul&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>NodeJS<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>MongoDB<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>React-Native<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>Git<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>ThreeJS<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>Firebase<span>&lt;/li&gt;</span></br>
+                    <span class="code-line">&lt;li&gt;</span>Github<span>&lt;/li&gt;</span></br>
+                    <span>&lt;/ul&gt;</span>
                 </div>
             </div>
-        </div>
-        <div class="featured-card-home stacking-card optimize-visibility">
-            <div class="featured-image"><img src="family-management-app.jpg" loading="lazy" alt="image" width="1847"
-                    height="962">
-            </div>
-            <div>
-                <span class="badge">Web App</span>
-                <h2 class="project-title">Family Management App</h2>
-                <p class="project-desc">
-                    A family management website with a clean, light, and classical theme. Used angular concepts like
-                    CRUD operations,
-                    services, guards, modules and components to create a seamless user experience. Applied features
-                    such as user authentication, Bootstrap css for better UI and FireBase for database and hosting.
-                </p>
-                <div class="tech-stack">
-                    <span class="tech">Angular</span>
-                    <span class="tech">Firebase</span>
-                    <span class="tech">Bootstrap</span>
+            <section class="skill-planet stacking-card">
+                <div id="three-container" class="optimize-visibility"></div>
+                <div class="orbit-container">
+                    <div class="core" onclick="scrollToHero()">AARYA</div>
+                    <div class="orbit" id="orbit">
+                    </div>
                 </div>
-                <div class="project-buttons">
-                    <a href="https://family-management-app-33038.web.app/login" class="btn-projects" target="_blank">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    <a href="https://github.com/AARYA77-dev/family-management-app" class="btn-projects" target="_blank">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
+            </section>
+
+        </section>
+        <section class="">
+            <h2 class="project-maintitle animated-header">My Projects</h2>
+            <div class="featured-card-home stacking-card optimize-visibility">
+                <div class="featured-image"><img src="electronicWebsitePc.jpg" loading="lazy" alt="image" width="1920"
+                        height="910">
+                </div>
+                <div>
+                    <span class="badge">Web App</span>
+                    <h2 class="project-title">Singitronic</h2>
+                    <p class="project-desc">
+                        Built a full-stack e-commerce web application with secure authentication, product catalog, cart,
+                        and
+                        wishlist functionality. Implemented dynamic pricing, tax calculation, and a responsive checkout
+                        experience for seamless order management.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech">NextJS</span>
+                        <span class="tech">MySql</span>
+                        <span class="tech">ExpressJS</span>
+                        <span class="tech">NodeJS</span>
+                        <span class="tech">tailwindcss</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://electronic-website-frontend.vercel.app" class="btn-projects" target="_blank"
+                            aria-label="Visit the Singitronic website">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        <a href="https://github.com/AARYA77-dev/electronic-website-frontend" class="btn-projects"
+                            target="_blank" aria-label="View the Singitronic GitHub repository">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <a class="contact-btn" href="project.html">More Projects <i style="margin: auto;"
-                class="fa-solid fa-arrow-right"></i></a>
-    </section>
-    <section class="optimize-footer">
+            <div class="featured-card-home stacking-card optimize-visibility">
+                <div class="featured-image"><img src="family-management-app.jpg" loading="lazy" alt="image" width="1847"
+                        height="962">
+                </div>
+                <div>
+                    <span class="badge">Web App</span>
+                    <h2 class="project-title">Family Management App</h2>
+                    <p class="project-desc">
+                        A family management website with a clean, light, and classical theme. Used angular concepts like
+                        CRUD operations,
+                        services, guards, modules and components to create a seamless user experience. Applied features
+                        such as user authentication, Bootstrap css for better UI and FireBase for database and hosting.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech">Angular</span>
+                        <span class="tech">Firebase</span>
+                        <span class="tech">Bootstrap</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://family-management-app-33038.web.app/login" class="btn-projects" target="_blank"
+                            aria-label="Visit the Family Management App website">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        <a href="https://github.com/AARYA77-dev/family-management-app" class="btn-projects"
+                            target="_blank" aria-label="View the Family Management App GitHub repository">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a class="contact-btn" href="project.html" aria-label="View more projects">More Projects <i
+                    style="margin: auto;" class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </section>
+    </main>
+    <footer class="optimize-footer">
         <div class="card contact">
             <h1>Social Link</h1>
             <div class="social-icons">
-                <a href="https://instagram.com/keenunisha" target="_blank">
-                    <i class="fa-brands fa-instagram social-icon"></i>
+                <a href="https://instagram.com/keenunisha" target="_blank" aria-label="Visit my Instagram profile">
+                    <i class="fa-brands fa-instagram social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/aarya-thkur-45884a236" target="_blank">
-                    <i class="fa-brands fa-linkedin social-icon"></i>
+                <a href="https://www.linkedin.com/in/aarya-thkur-45884a236" target="_blank"
+                    aria-label="Visit my LinkedIn profile">
+                    <i class="fa-brands fa-linkedin social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="https://discordapp.com/users/1453225181362262166" target="_blank">
-                    <i class="fa-brands fa-discord social-icon"></i>
+                <a href="https://discordapp.com/users/1453225181362262166" target="_blank"
+                    aria-label="Visit my Discord profile">
+                    <i class="fa-brands fa-discord social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="https://github.com/AARYA77-dev" target="_blank">
-                    <i class="fa-brands fa-github social-icon"></i>
+                <a href="https://github.com/AARYA77-dev" target="_blank" aria-label="Visit my GitHub profile">
+                    <i class="fa-brands fa-github social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="https://dev.to/aarya77dev" target="_blank">
-                    <i class="fa-brands fa-dev social-icon"></i>
+                <a href="https://dev.to/aarya77dev" target="_blank" aria-label="Visit my DEV profile">
+                    <i class="fa-brands fa-dev social-icon" aria-hidden="true"></i>
                 </a>
-                <a href="mailto:hireaarya.dev@gmail.com" target="_blank">
-                    <i class="fa-regular fa-envelope social-icon"></i>
+                <a href="mailto:hireaarya.dev@gmail.com" target="_blank" aria-label="Send me an email">
+                    <i class="fa-regular fa-envelope social-icon" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="contact-send-msg">
@@ -259,7 +276,7 @@
                 <a class="contact-btn" href="contact.html">Contact Me</a>
             </div>
         </div>
-    </section>
+    </footer>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
         import {
@@ -552,11 +569,13 @@
         document.getElementById("hero").scrollIntoView();
     }
 
-    function scrollToAbout() {
+    function scrollToAbout(event) {
+        event.preventDefault();
         lenis.scrollTo(document.getElementById("about"));
     }
 
-    function scrollToSkills() {
+    function scrollToSkills(event) {
+        event.preventDefault();
         lenis.scrollTo(document.getElementById("skills"));
     }
 
