@@ -1240,9 +1240,14 @@ body:not(.dark) .featured-card-home {
     font-size: 12px;
     padding: 6px 12px;
     border-radius: 999px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    width: fit-content;
     margin-bottom: 10px;
     border: 1px solid rgba(248, 250, 252, 0.22);
+    text-align: center;
 }
 
 .project-title {
