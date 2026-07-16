@@ -153,6 +153,7 @@ h1 span {
     position: absolute;
     font-style: italic;
     font-weight: 500;
+    color: #ffffff;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -502,7 +503,7 @@ body:not(.dark) .project-icon {
     color: #00FFFF;
     font-size: 16px;
     font-weight: 500;
-    border: 1.5px solid cyan;
+    border: 1.5px solid var(--primary-blue);
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
     transition: all 0.3s ease;
@@ -510,6 +511,13 @@ body:not(.dark) .project-icon {
 
 .resume-btn:hover {
     transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+body:not(.dark) .resume-btn {
+    background: transparent;
+    color: var(--primary-blue);
+    box-shadow: none;
 }
 
 
@@ -1307,7 +1315,6 @@ body:not(.dark) .featured-card-home {
 
 .btn-projects:hover {
     transform: translateY(-2px);
-    opacity: 0.9;
 }
 
 .project-grid {
@@ -1475,7 +1482,9 @@ body.dark .project-card {
 .social-icon {
     font-size: 64px;
     color: black;
-    transition: transform 0.3s all cubic-bezier(.645, .045, .355, 1), color 0.3s all cubic-bezier(.645, .045, .355, 1);
+    padding: 0px 6px;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(.645, .045, .355, 1);
 }
 
 body.dark .social-icon {
@@ -1496,11 +1505,8 @@ body.dark .social-icon {
 
 .social-icon:hover {
     color: blue;
-    padding: 0px 6px;
     background: black;
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
-    border-radius: 10px;
-    border-color: #70aeff;
 }
 
 body.dark .social-icon:hover {
@@ -1536,10 +1542,12 @@ body.dark .social-icon:hover {
 }
 
 .contact-btn:hover {
-    background: rgba(74, 144, 226, 0.1);
-    box-shadow: 0 0 25px rgba(74, 144, 226, 0.6);
     transform: translateY(-2px);
-    /* border: 2px solid white; */
+}
+
+body:not(.dark) .contact-btn:hover {
+    background: #1d4ed8;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
 }
 
 .contact-btn:active {
@@ -1644,19 +1652,19 @@ textarea::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
 }
 
-.contact-note{
-    margin-top:20px;
-    text-align:center;
-    color:#999;
+.contact-note {
+    margin-top: 20px;
+    text-align: center;
+    color: #999;
 }
 
-.contact-note a{
-    color:#2f90ff;
-    font-weight:600;
+.contact-note a {
+    color: #2f90ff;
+    font-weight: 600;
 }
 
-.contact-note a:hover{
-    text-decoration:underline;
+.contact-note a:hover {
+    text-decoration: underline;
 }
 
 
