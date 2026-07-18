@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Batman Themed Buttons — Blue/Black</title>
+<style>
+  :root {
+    --bg: #05070a;
+    --bg-card: #0a0d12;
+    --gotham-1: #0e131c;
+    --gotham-2: #161d2b;
+    --blue: #3ea6ff;
+    --blue-dim: #2478b8;
+    --fg: #e8e9ec;
+    --fg-dim: #9aa0ab;
+    --danger: #b83232;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: radial-gradient(circle at 50% 20%, #0e131c 0%, var(--bg) 70%);
+    color: var(--fg);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .panel {
+    width: 100%;
+    max-width: 640px;
+    background: var(--bg-card);
+    border: 1px solid #161b24;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+
+  .panel h1 {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.4rem;
+  }
+
+  .panel p.sub {
+    color: var(--fg-dim);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .group {
+    margin-bottom: 2rem;
+  }
+
+  .group h2 {
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    margin-bottom: 0.9rem;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    align-items: center;
+  }
+
+  /* ---------- base button ---------- */
+  .bat-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.75rem 1.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .bat-btn:active { transform: scale(0.96); }
+
+  .bat-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    fill: currentColor;
+  }
+
+  /* ---------- primary: blue on gotham gradient with spotlight sweep ---------- */
+  .bat-btn.primary {
+    background: linear-gradient(135deg, var(--gotham-2), var(--gotham-1));
+    color: var(--blue);
+    border-color: #232a3a;
+  }
+
+  .bat-btn.primary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(62,166,255,0.25), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+  }
+
+  .bat-btn.primary:hover {
+    border-color: var(--blue-dim);
+    box-shadow: 0 0 22px rgba(62,166,255,0.3);
+  }
+
+  .bat-btn.primary:hover::before {
+    left: 120%;
+  }
+
+  /* ---------- signal: dark button that reveals a blue spotlight glow behind it on hover ---------- */
+  .bat-btn.signal {
+    background: var(--gotham-1);
+    color: var(--fg);
+    border-color: #1c2330;
+    z-index: 1;
+  }
+
+  .bat-btn.signal::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle, rgba(62,166,255,0.35) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+
+  .bat-btn.signal:hover {
+    color: var(--blue);
+  }
+
+  .bat-btn.signal:hover::after {
+    opacity: 1;
+  }
+
+  /* ---------- outline / secondary ---------- */
+  .bat-btn.outline {
+    background: transparent;
+    color: var(--fg-dim);
+    border-color: #232a38;
+  }
+
+  .bat-btn.outline:hover {
+    color: var(--fg);
+    border-color: var(--blue-dim);
+  }
+
+  /* ---------- danger (e.g. destructive actions) ---------- */
+  .bat-btn.danger {
+    background: rgba(184,50,50,0.1);
+    color: #e07a7a;
+    border-color: rgba(184,50,50,0.35);
+  }
+
+  .bat-btn.danger:hover {
+    background: rgba(184,50,50,0.18);
+    box-shadow: 0 0 18px rgba(184,50,50,0.25);
+  }
+
+  /* ---------- icon-only round button ---------- */
+  .bat-btn.icon-only {
+    padding: 0.7rem;
+    border-radius: 50%;
+    background: var(--gotham-1);
+    color: var(--blue);
+    border-color: #1c2330;
+  }
+
+  .bat-btn.icon-only svg { width: 18px; height: 18px; }
+
+  .bat-btn.icon-only:hover {
+    box-shadow: 0 0 20px rgba(62,166,255,0.3);
+    border-color: var(--blue-dim);
+  }
+
+  /* ---------- disabled ---------- */
+  .bat-btn:disabled,
+  .bat-btn.disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* ---------- sizes ---------- */
+  .bat-btn.sm { padding: 0.5rem 1rem; font-size: 0.72rem; }
+  .bat-btn.lg { padding: 0.95rem 1.9rem; font-size: 0.95rem; }
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <h1>Gotham UI Kit</h1>
+  <p class="sub">Batman-themed button variants — recolored to match your blue/black portfolio.</p>
+
+  <div class="group">
+    <h2>Primary</h2>
+    <div class="row">
+      <button class="bat-btn primary sm">
+        <svg viewBox="0 0 24 24"><path d="M12 2c-2 2-4 2.5-6 2 1 2 1 3.5 0 5 2-.5 3.5 0 5 1.5-1.5 1-2 2.5-1.5 4.5 1.5-1.5 3-1.5 4.5 0 .5-2 0-3.5-1.5-4.5 1.5-1.5 3-2 5-1.5-1-1.5-1-3 0-5-2 .5-4 0-6-2Z"/></svg>
+        Enter the Cave
+      </button>
+      <button class="bat-btn primary">
+        <svg viewBox="0 0 24 24"><path d="M12 2c-2 2-4 2.5-6 2 1 2 1 3.5 0 5 2-.5 3.5 0 5 1.5-1.5 1-2 2.5-1.5 4.5 1.5-1.5 3-1.5 4.5 0 .5-2 0-3.5-1.5-4.5 1.5-1.5 3-2 5-1.5-1-1.5-1-3 0-5-2 .5-4 0-6-2Z"/></svg>
+        Deploy Gadget
+      </button>
+      <button class="bat-btn primary lg">
+        <svg viewBox="0 0 24 24"><path d="M12 2c-2 2-4 2.5-6 2 1 2 1 3.5 0 5 2-.5 3.5 0 5 1.5-1.5 1-2 2.5-1.5 4.5 1.5-1.5 3-1.5 4.5 0 .5-2 0-3.5-1.5-4.5 1.5-1.5 3-2 5-1.5-1-1.5-1-3 0-5-2 .5-4 0-6-2Z"/></svg>
+        Call the Signal
+      </button>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Signal glow</h2>
+    <div class="row">
+      <button class="bat-btn signal">Track Villain</button>
+      <button class="bat-btn signal">Open Case File</button>
+      <button class="bat-btn signal" disabled>Locked</button>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Outline</h2>
+    <div class="row">
+      <button class="bat-btn outline">Cancel</button>
+      <button class="bat-btn outline">Back to Wayne Manor</button>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Danger</h2>
+    <div class="row">
+      <button class="bat-btn danger">
+        <svg viewBox="0 0 24 24"><path d="M12 2c-2 2-4 2.5-6 2 1 2 1 3.5 0 5 2-.5 3.5 0 5 1.5-1.5 1-2 2.5-1.5 4.5 1.5-1.5 3-1.5 4.5 0 .5-2 0-3.5-1.5-4.5 1.5-1.5 3-2 5-1.5-1-1.5-1-3 0-5-2 .5-4 0-6-2Z"/></svg>
+        Self-Destruct
+      </button>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Icon only</h2>
+    <div class="row">
+      <button class="bat-btn icon-only" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="bat-btn icon-only" aria-label="Settings">
+        <svg viewBox="0 0 24 24"><path d="M12 2c-2 2-4 2.5-6 2 1 2 1 3.5 0 5 2-.5 3.5 0 5 1.5-1.5 1-2 2.5-1.5 4.5 1.5-1.5 3-1.5 4.5 0 .5-2 0-3.5-1.5-4.5 1.5-1.5 3-2 5-1.5-1-1.5-1-3 0-5-2 .5-4 0-6-2Z"/></svg>
+      </button>
+      <button class="bat-btn icon-only" aria-label="Alerts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
