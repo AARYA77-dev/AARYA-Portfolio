@@ -50,6 +50,7 @@ body.animate-on-load {
 
 html {
     scroll-behavior: auto;
+    scrollbar-gutter: stable;
 }
 
 span {
