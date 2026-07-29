@@ -268,12 +268,12 @@ h1 span {
         background 0.3s ease;
 
     will-change: transform;
+    view-transition-name: theme-toggle-circle;
 }
 
 /* CSS Styling & Scroll Animation */
 
 .progress-bar {
-    /* Fix the bar to the top of the viewport */
     position: fixed;
     top: 0;
     left: 0;
@@ -441,6 +441,35 @@ body:not(.dark) .social-icon {
 body:not(.dark) .featured-image,
 body:not(.dark) .project-icon {
     background: #dbeafe;
+}
+
+/* Circular View Transition & Theme Ripple starting from profile image */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+    z-index: 1;
+}
+
+::view-transition-new(root) {
+    z-index: 99999;
+}
+
+::view-transition-group(theme-toggle-circle) {
+    animation-duration: 0.35s;
+    animation-timing-function: cubic-bezier(.4, 0, .2, 1);
+    z-index: 999999;
+}
+
+.theme-ripple-overlay {
+    position: fixed;
+    border-radius: 50%;
+    z-index: 999999;
+    pointer-events: none;
+    will-change: transform, width, height, left, top;
 }
 
 @media (max-width: 768px) {
