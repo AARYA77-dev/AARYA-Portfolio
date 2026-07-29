@@ -76,12 +76,12 @@ h1 span {
 
 .loader {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100svh;
     overflow: hidden;
     z-index: 2000;
+    background: #000000 !important;
 }
 
 .overlay {
@@ -95,7 +95,7 @@ h1 span {
 .block {
     width: 100%;
     height: 100%;
-    background-color: var(--bg-main);
+    background-color: black;
 }
 
 .intro-logo {
@@ -115,6 +115,7 @@ h1 span {
 
 .word h1 {
     font-size: 2.5rem;
+    position: relative;
 }
 
 .divider {
@@ -152,35 +153,39 @@ h1 span {
 
 .counter {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8rem;
+    height: 12rem;
+    transform: translate(-50%, -50%);
     font-style: italic;
     font-weight: 500;
     color: #ffffff;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 .count {
     position: absolute;
     top: 50%;
     left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
     transform: translate(-50%, -50%);
 }
 
 .count .digit h1 {
     font-size: clamp(6rem, 15vw, 15rem);
+    line-height: 1;
+    transform: translateY(120%);
+    will-change: transform;
 }
 
 
 .word,
 .count .digit {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.count .digit h1 {
-    position: relative;
-    transform: translateY(120%);
-    will-change: transform;
 }
 
 #word-1 h1 {
@@ -191,9 +196,50 @@ h1 span {
     transform: translateY(120%);
 }
 
-.block {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    will-change: clip-path;
+.bat-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2001;
+    overflow: hidden;
+}
+
+.bat {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    top: 50%;
+    left: -100px;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.bat svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.bat svg ellipse,
+.bat svg path {
+    fill: #0a0a0a;
+    stroke: rgba(255, 255, 255, 0.18);
+    stroke-width: 1;
+}
+
+.bat .wing-left,
+.bat .wing-right {
+    transform-origin: 50% 50%;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.12));
+}
+
+.image-ring img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #000;
+    border: 4px solid #0a1020;
 }
 
 .animate-on-load .nav,
@@ -925,20 +971,19 @@ body.dark .second-title {
 /* image */
 
 .image-ring {
+    position: relative;
     width: 350px;
-    filter: invert(1);
     height: 350px;
     border-radius: 50%;
     padding: 15px;
-    background-color: rgb(244, 79, 13);
+    overflow: hidden;
+    isolation: isolate;
+    cursor: pointer;
+    background: radial-gradient(circle at 50% 35%, #1a1a20, #000 75%);
     box-shadow: 0px 0px 50px rgba(211, 216, 223, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 body.dark .image-ring {
-    filter: invert(0);
     background: radial-gradient(circle, var(--primary-blue), transparent 70%);
     box-shadow: 0px 0px 40px rgba(97, 131, 224, 0.978);
 }
@@ -947,7 +992,38 @@ body.dark .image-ring:hover {
     box-shadow: 0 0 120px rgba(97, 131, 224, 0.978);
 }
 
-.image-ring img {
+.image-layer,
+.batman-layer {
+    position: absolute;
+    inset: 15px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+body:not(.dark) .image-layer{
+    filter: invert(1)
+}
+
+body:not(.dark) .batman-layer {
+    filter: invert(1)
+}
+
+.image-layer {
+    z-index: 1;
+}
+
+.batman-layer {
+    z-index: 2;
+    clip-path: circle(0% at var(--mx, 50%) var(--my, 50%));
+    transition: clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.image-ring:hover .batman-layer {
+    clip-path: circle(150% at var(--mx, 50%) var(--my, 50%));
+}
+
+.image-layer img,
+.batman-layer img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1596,40 +1672,57 @@ body.dark .social-icon:hover {
     transform: translateY(0);
 }
 
+
 .contact-btn {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: fit-content;
-    min-width: 170px;
-    min-height: 48px;
-    margin: 18px auto;
-    padding: 14px 24px;
+    gap: 0.55rem;
+    padding: 0.75rem 1.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: 1px solid transparent;
     cursor: pointer;
-    background: blue;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
-    transition: all 0.3s ease;
-    touch-action: manipulation;
-    line-height: 1;
+    outline: none;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    margin: 18px auto;
+}
+
+.contact-btn {
+    background: linear-gradient(135deg, #161d2b, #0e131c);
+    color: #3ea6ff;
+    border-color: #2478b8;
+}
+
+.contact-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(62, 166, 255, 0.25), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
 }
 
 .contact-btn:hover {
-    transform: translateY(-2px);
+
+    box-shadow: 0 0 22px rgba(62, 166, 255, 0.3);
 }
 
-body:not(.dark) .contact-btn:hover {
+.contact-btn:hover::before {
+    left: 120%;
+}
+
+body:not(.dark) .contact-btn {
+    color: #ffffff;
     background: #1d4ed8;
     box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
-}
-
-.contact-btn:active {
-    transform: translateY(0);
 }
 
 .contact-page-container {
