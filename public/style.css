@@ -49,7 +49,7 @@ body.animate-on-load {
 }
 
 html {
-    scroll-behavior: auto;
+    scroll-behavior: smmooth;
     scrollbar-gutter: stable;
 }
 
@@ -269,6 +269,37 @@ h1 span {
 
     will-change: transform;
 }
+
+/* CSS Styling & Scroll Animation */
+
+.progress-bar {
+    /* Fix the bar to the top of the viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background-color: #0076ff;
+    z-index: 9999;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    animation-name: grow-progress;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: scroll();
+}
+
+@keyframes grow-progress {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
 
 /* ICONS - ALWAYS CENTERED */
 
