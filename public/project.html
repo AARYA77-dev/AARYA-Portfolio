@@ -5,11 +5,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="Aarya's Portfolio - Showcasing my projects, skills, and experience as a developer. Explore my work and learn more about me." />
+        content="Explore my portfolio of development projects including web applications, mobile apps, and software solutions." />
+    <link rel="canonical" href="https://aarya-dev.web.app/project.html">
     <title>AARYA | PROJECTS</title>
+    <meta property="og:title" content="Projects | Aarya Portfolio">
+    <meta property="og:description"
+        content="Explore my portfolio of development projects including web applications, mobile apps, and software solutions.">
+    <meta property="og:image" content="https://aarya-dev.web.app/aarya.webp">
+    <meta property="og:url" content="https://aarya-dev.web.app/project.html">
     <link rel="icon" type="image/x-icon" href="aarya.webp" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Projects",
+  "url": "https://aarya-dev.web.app/project.html",
+  "description": "Portfolio showcasing software development projects by Aarya."
+}
+</script>
 </head>
 
 <body>
@@ -261,13 +276,13 @@
     const toggle = document.getElementById("toggle");
 
     function getThemeOriginPoint() {
-        const img = document.querySelector(".image-ring img") || 
-                    document.querySelector(".image-ring") || 
-                    document.querySelector("img[src*='aarya']");
-        
+        const img = document.querySelector(".image-ring img") ||
+            document.querySelector(".image-ring") ||
+            document.querySelector("img[src*='aarya']");
+
         if (img) {
             const rect = img.getBoundingClientRect();
-            if (rect.width > 0 && rect.height > 0 && 
+            if (rect.width > 0 && rect.height > 0 &&
                 rect.bottom >= 0 && rect.top <= window.innerHeight &&
                 rect.right >= 0 && rect.left <= window.innerWidth) {
                 return {

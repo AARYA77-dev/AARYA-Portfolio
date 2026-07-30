@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
         content="Aarya's Portfolio - Showcasing my projects, skills, and experience as a developer. Explore my work and learn more about me." />
+    <link rel="canonical" href="https://aarya-dev.web.app/index.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Aarya | Full Stack Web Developer">
+    <meta property="og:description"
+        content="Modern software developer specialising in creating interactive software applications.">
+    <meta property="og:image" content="https://aarya-dev.web.app/aarya.webp">
+    <meta property="og:url" content="https://aarya-dev.web.app/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
     <title>AARYA | PORTFOLIO</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/x-icon" href="aarya.webp" />
@@ -14,6 +25,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://aarya-dev.web.app/#person",
+      "name": "Aarya",
+      "url": "https://aarya-dev.web.app/",
+      "image": "https://aarya-dev.web.app/aarya.webp",
+      "jobTitle": "Full Stack Web Developer",
+      "description": "Full Stack Developer specialising in building fast, secure, responsive and scalable modern website development, custom software applications and business solutions.",
+      "sameAs": [
+        "https://github.com/AARYA77-dev",
+        "https://www.linkedin.com/in/aarya-thkur-45884a236"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://aarya-dev.web.app/#website",
+      "url": "https://aarya-dev.web.app/",
+      "name": "Aarya Portfolio",
+      "description": "Portfolio of Aarya, a Full Stack Developer.",
+      "publisher": {
+        "@id": "https://aarya-dev.web.app/#person"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
 </head>
 
 <body class="animate-on-load">
@@ -704,13 +746,13 @@
     const toggle = document.getElementById("toggle");
 
     function getThemeOriginPoint() {
-        const img = document.querySelector(".image-ring img") || 
-                    document.querySelector(".image-ring") || 
-                    document.querySelector("img[src*='aarya']");
-        
+        const img = document.querySelector(".image-ring img") ||
+            document.querySelector(".image-ring") ||
+            document.querySelector("img[src*='aarya']");
+
         if (img) {
             const rect = img.getBoundingClientRect();
-            if (rect.width > 0 && rect.height > 0 && 
+            if (rect.width > 0 && rect.height > 0 &&
                 rect.bottom >= 0 && rect.top <= window.innerHeight &&
                 rect.right >= 0 && rect.left <= window.innerWidth) {
                 return {

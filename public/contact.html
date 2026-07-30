@@ -5,13 +5,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="Aarya's Portfolio - Showcasing my projects, skills, and experience as a developer. Explore my work and learn more about me." />
+        content="Need a modern website or software? Contact Aarya for freelance software development services and collaborations." />
+    <link rel="canonical" href="https://aarya-dev.web.app/contact.html">
     <title>AARYA | CONTACT</title>
+    <meta property="og:title" content="Contact Aarya | Full Stack Web Developer">
+    <meta property="og:description"
+        content="Need a modern website or software? Contact Aarya for freelance software development services and collaborations.">
+    <meta property="og:image" content="https://aarya-dev.web.app/aarya.webp">
+    <meta property="og:url" content="https://aarya-dev.web.app/contact.html">
     <link rel="icon" type="image/x-icon" href="aarya.webp" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact",
+  "url": "https://aarya-dev.web.app/contact.html",
+  "description": "Contact Aarya for freelance software development projects and collaborations."
+}
+</script>
 </head>
 
 <body>
@@ -233,13 +248,13 @@
     const toggle = document.getElementById("toggle");
 
     function getThemeOriginPoint() {
-        const img = document.querySelector(".image-ring img") || 
-                    document.querySelector(".image-ring") || 
-                    document.querySelector("img[src*='aarya']");
-        
+        const img = document.querySelector(".image-ring img") ||
+            document.querySelector(".image-ring") ||
+            document.querySelector("img[src*='aarya']");
+
         if (img) {
             const rect = img.getBoundingClientRect();
-            if (rect.width > 0 && rect.height > 0 && 
+            if (rect.width > 0 && rect.height > 0 &&
                 rect.bottom >= 0 && rect.top <= window.innerHeight &&
                 rect.right >= 0 && rect.left <= window.innerWidth) {
                 return {
