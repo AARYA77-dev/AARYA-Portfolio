@@ -94,7 +94,6 @@
                 </div>
             </div>
         </div>
-        <div class="bat-container" id="batContainer"></div>
     </div>
     <canvas class="snow-container" id="snow-canvas"></canvas>
     <div class="progress-bar"></div>
@@ -140,13 +139,8 @@
                     <div class="animated-text">I make your apps<span></span></div>
                 </div>
             </div>
-            <div class="image-ring" id="imageRing">
-                <div class="image-layer">
-                    <img src="aarya.webp" alt="Aarya" fetchpriority="high" width="350" height="350">
-                </div>
-                <div class="batman-layer">
-                    <img src="../batman.png" alt="Batman" width="350" height="350">
-                </div>
+            <div class="image-ring">
+                <img src="aarya.webp" alt="Aarya" fetchpriority="high" width="350" height="350">
             </div>
         </section>
         <section id="about" class="grid stacking-card">
@@ -352,18 +346,6 @@
     </script>
 </body>
 <script>
-    const imageRing = document.getElementById("imageRing");
-
-    if (imageRing) {
-        imageRing.addEventListener("pointermove", (e) => {
-            const rect = imageRing.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            imageRing.style.setProperty("--mx", `${x}%`);
-            imageRing.style.setProperty("--my", `${y}%`);
-        });
-    }
-
     // Initialize Lenis
     const lenis = new Lenis({
         duration: 1.2,        // smoothness
@@ -399,117 +381,6 @@
         if (loader) loader.remove();
     }
 
-    function createBatSVG() {
-        const ns = "http://www.w3.org/2000/svg";
-        const svg = document.createElementNS(ns, "svg");
-        svg.setAttribute("viewBox", "0 0 168.116 168.115");
-        svg.setAttribute("aria-hidden", "true");
-
-        const g = document.createElementNS(ns, "g");
-        const path = document.createElementNS(ns, "path");
-        path.setAttribute("class", "bat-shape");
-        path.setAttribute("d", "M89.795,60.477c0,0-1.229,5.39-6.419,5.39c-5.182,0-5.673-5.39-5.673-5.39s-3.447,8.821-5.756,8.821c-2.311,0-32.948-14.889-32.948-14.889s-4.662-1.984-2.437-6.063C33.316,49.784,9.957,57.215,0,82.708c3.411-2.475,6.936-4.278,10.085-2.694c2.533,1.278,15.472,9.437,15.472,9.437s2.012,1.17,1.497,6.735c0.901-0.781,6.723-5.59,9.929-4.044c3.21,1.549,17.481,10.107,17.481,10.107s1.02,0.65,0.955,6.067c1.765-2.265,5.657-6.128,8.465-4.716c2.706,1.438,12.216,6.572,16.142,8.755c3.929,2.188,4.418,7.414,4.418,7.414s0.105-5.215,4.033-7.414c2.479-1.258,15.076-8.088,15.076-8.088s3.194-1.159,9.38,4.729c-0.089-2.222-1.041-4.958,0.71-6.741c1.746-1.773,16.202-9.75,16.202-9.75s2.835-1.852,9.922,3.686c0.12-1.854,0.043-4.552,2.124-6.067c2.078-1.516,16.809-9.437,16.809-9.437s4.771-2.503,9.417,4.046c-0.377-3.395-7.895-23.534-35.951-35.036c-0.498,1.562,1.998,2.626-3.721,5.389c-4.755,2.299-32.279,14.148-32.279,14.148S92.953,70.501,89.795,60.477z");
-
-        g.appendChild(path);
-        svg.appendChild(g);
-        return svg;
-    }
-
-    function runBatExit(container, loader) {
-        const batTl = gsap.timeline();
-        const cols = 20;
-        const rows = 12;
-        const bats = [];
-        const flapTweens = [];
-
-        const cellW = 100 / cols;
-        const cellH = 100 / rows;
-
-        for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < cols; c++) {
-                const wrapper = document.createElement("div");
-                wrapper.className = "bat";
-                wrapper.appendChild(createBatSVG());
-                container.appendChild(wrapper);
-
-                const jitterX = (Math.random() - 0.5) * cellW * 0.7;
-                const jitterY = (Math.random() - 0.5) * cellH * 0.7;
-                const topPct = r * cellH + cellH / 2 + jitterY;
-                const leftPct = c * cellW + cellW / 2 + jitterX;
-                const scale = 0.7 + Math.random() * 0.6;
-                const flapDelay = Math.random() * 0.3;
-
-                gsap.set(wrapper, {
-                    top: `${topPct}%`,
-                    left: `${leftPct}%`,
-                    xPercent: -50,
-                    yPercent: -50,
-                    scale,
-                    opacity: 0
-                });
-
-                const exitAngle = Math.random() * Math.PI * 2;
-                const travel = Math.max(window.innerWidth, window.innerHeight) * (1.1 + Math.random() * 0.5);
-                const exitX = Math.cos(exitAngle) * travel;
-                const exitY = Math.sin(exitAngle) * travel;
-
-                bats.push({ el: wrapper, scale, flapDelay, exitX, exitY, rotation: gsap.utils.random(-35, 35) });
-            }
-        }
-
-        bats.forEach(({ el, flapDelay }) => {
-            const batShape = el.querySelector(".bat-shape");
-            const flap = gsap.to(batShape, {
-                scaleX: 0.85,
-                duration: 0.07 + Math.random() * 0.03,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-                delay: flapDelay,
-                transformOrigin: "50% 50%"
-            });
-            flapTweens.push(flap);
-        });
-
-        batTl.to(bats.map((bat) => bat.el), {
-            opacity: 1,
-            scale: (i) => bats[i].scale,
-            duration: 0.35,
-            stagger: { each: 0.006, from: "random" },
-            ease: "power2.out"
-        }, 0);
-
-        batTl.to({}, { duration: 0.18 });
-
-        batTl.to(bats.map((bat) => bat.el), {
-            x: (i) => `+=${bats[i].exitX}`,
-            y: (i) => `+=${bats[i].exitY}`,
-            rotation: (i) => bats[i].rotation,
-            duration: 1.15,
-            ease: "power2.in",
-            stagger: { each: 0.007, from: "random" }
-        }, ">");
-
-        batTl.to(bats.map((bat) => bat.el), {
-            opacity: 0,
-            duration: 0.42,
-            ease: "power2.out"
-        }, "-=0.22");
-
-        batTl.to(loader, {
-            opacity: 0,
-            duration: 0.45,
-            ease: "power2.out",
-            onComplete: () => {
-                loader.style.display = "none";
-            }
-        }, ">");
-
-        batTl.add(() => flapTweens.forEach((t) => t.kill()), ">");
-
-        return batTl;
-    }
-
     function runHomeAnimation() {
         gsap.registerPlugin(CustomEase);
         gsap.registerPlugin(ScrollTrigger);
@@ -536,98 +407,99 @@
             }
         });
 
-        const loader = document.querySelector(".loader");
-        const batContainer = document.getElementById("batContainer");
         const counts = document.querySelectorAll(".count");
-        const batExitTl = runBatExit(batContainer, loader);
-
-        tl.addLabel("countdownEnd");
 
         counts.forEach((count, index) => {
             const digit = count.querySelectorAll(".digit h1");
-            const offset = index * 0.1;
 
             tl.to(digit, {
                 y: "0%",
                 duration: 1,
-                stagger: 0.075,
-                delay: offset
+                stagger: 0.075
             }, index);
 
             if (index < counts.length) {
                 tl.to(digit, {
-                    y: "-105%",
+                    y: "-100%",
                     duration: 1,
-                    stagger: 0.075,
-                    delay: offset + 0.1
+                    stagger: 0.075
                 }, index + 1);
             }
         });
 
-        tl.addLabel("introBurst", "+=0.15");
-
-        tl.to(".spinner", { opacity: 0, duration: 0.3 }, "introBurst");
-        tl.to(".word h1", { y: "0%", duration: 1 }, "introBurst");
+        tl.to(".spinner", { opacity: 0, duration: 0.3 });
+        tl.to(".word h1", { y: "0%", duration: 1 }, "<");
         tl.to(".divider", {
             scaleY: "100%",
             duration: 1,
             onComplete: () =>
                 gsap.to(".divider", { opacity: 0, duration: 0.4, })
-        }, "introBurst");
-
-        tl.add(batExitTl, "introBurst");
+        }, "<");
 
         tl.to("#word-1 h1", {
             y: "100%",
             duration: 0.1,
             delay: 0.3
-        }, ">");
+        });
 
         tl.to("#word-2 h1", {
             y: "-100%",
             duration: 0.2,
             delay: 0.3
-        }, ">");
+        });
 
-        tl.add(() => {
-            titleAnimation();
-            stackingAnimation();
-            ScrollTrigger.refresh();
-        }, "introBurst+=0.8");
+        tl.to(".block", {
+            clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0)",
+            stagger: 0.1
+        });
+
+        tl.to(".loader", {
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            onComplete: () => {
+                const loader = document.querySelector(".loader");
+                loader.classList.add("hidden");
+                loader.remove();
+                titleAnimation();
+                stackingAnimation();
+                ScrollTrigger.refresh();
+            }
+        });
 
         tl.to([".nav", ".info-header"], {
             y: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.1,
+            duration: 1,
+            stagger: 0.15,
             ease: "power2.out",
             force3D: true
-        }, "introBurst+=0.8")
+        })
 
             .to(".hero", {
                 y: 0,
                 opacity: 1,
-                duration: 0.9,
+                duration: 1.2,
                 ease: "power3.out",
                 force3D: true
-            }, "-=0.5")
+            }, "-=0.6")
 
             .to(".image-ring", {
                 scale: 1,
                 opacity: 1,
-                duration: 0.9,
+                duration: 1.3,
                 ease: "power4.out",
                 transformOrigin: "center center",
                 force3D: true
-            }, "-=0.7")
+            }, "-=1")
 
             .to(".title", {
                 y: 0,
                 opacity: 1,
-                duration: 0.8,
+                duration: 1,
                 ease: "power2.out",
                 force3D: true
-            }, "-=0.6");
+            }, "-=0.9")
     }
     function titleAnimation() {
         gsap.registerPlugin(ScrollTrigger);
