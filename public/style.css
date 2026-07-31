@@ -566,13 +566,12 @@ body:not(.dark) .project-icon {
     font-weight: 500;
     border: 1.5px solid var(--primary-blue);
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
     transition: all 0.3s ease;
 }
 
 .resume-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
 }
 
 body:not(.dark) .resume-btn {
@@ -1597,39 +1596,59 @@ body.dark .social-icon:hover {
 }
 
 .contact-btn {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.55rem;
     width: fit-content;
     min-width: 170px;
     min-height: 48px;
     margin: 18px auto;
-    padding: 14px 24px;
+    padding: 0.75rem 1.4rem;
     cursor: pointer;
-    background: blue;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 500;
+    background: linear-gradient(135deg, #161d2b, #0e131c);
+    color: #3ea6ff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
     text-decoration: none;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
-    transition: all 0.3s ease;
+    border: 1px solid #232a3a;
+    border-radius: 10px;
+    outline: none;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     touch-action: manipulation;
     line-height: 1;
 }
 
+.contact-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(62, 166, 255, 0.25), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+}
+
 .contact-btn:hover {
+    border-color: #2478b8;
+    box-shadow: 0 0 22px rgba(62, 166, 255, 0.3);
+    color: #3ea6ff;
     transform: translateY(-2px);
 }
 
-body:not(.dark) .contact-btn:hover {
-    background: #1d4ed8;
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+.contact-btn:hover::before {
+    left: 120%;
 }
 
 .contact-btn:active {
-    transform: translateY(0);
+    transform: scale(0.96);
 }
 
 .contact-page-container {
@@ -1878,6 +1897,28 @@ textarea::-webkit-scrollbar-thumb:hover {
 .optimize-footer {
     content-visibility: auto;
     contain-intrinsic-size: auto 150px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .optimize-footer {
+        contain-intrinsic-size: auto 260px;
+    }
+
+    .project-card.optimize-visibility {
+        contain-intrinsic-size: auto 350px;
+    }
+
+    .featured-card.optimize-visibility,
+    .featured-card-home.optimize-visibility {
+        contain-intrinsic-size: auto 420px;
+    }
+}
+
+@media (max-width: 600px) {
+    #three-container.optimize-visibility {
+        contain-intrinsic-size: auto 360px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

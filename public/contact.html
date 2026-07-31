@@ -164,12 +164,17 @@
         });
     }
 
-    // Canvas-based Snow Particle System for Contact Page
+    // Canvas-based Snow Particle System
     let snowCanvas = null;
     let snowCtx = null;
     let snowAnimationId = null;
     let particles = [];
-    const maxParticles = 80;
+    const maxParticles = 100;
+
+    let footerBins = [];
+    const binSize = 6;
+    const maxPileHeight = 10;
+    let landedFlakes = [];
 
     function initSnowCanvas() {
         snowCanvas = document.getElementById("snow-canvas");
@@ -184,9 +189,11 @@
             particles.push({
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
-                r: Math.random() * 3 + 1,
-                d: Math.random() * 1 + 0.5,
-                o: Math.random() * 0.8 + 0.2
+                r: Math.random() * 2.5 + 1,
+                d: Math.random() * 1.2 + 0.6,
+                o: Math.random() * 0.8 + 0.2,
+                sway: Math.random() * Math.PI * 2,
+                swaySpeed: Math.random() * 0.03 + 0.01
             });
         }
 
@@ -200,6 +207,8 @@
         if (snowCanvas) {
             snowCanvas.width = window.innerWidth;
             snowCanvas.height = window.innerHeight;
+            footerBins = [];
+            landedFlakes = [];
         }
     }
 
@@ -208,6 +217,25 @@
 
         snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
 
+        const footerCard = document.querySelector(".optimize-footer .card") || document.querySelector(".optimize-footer");
+        let footerRect = null;
+        let numBins = 0;
+
+        if (footerCard) {
+            footerRect = footerCard.getBoundingClientRect();
+            numBins = Math.max(1, Math.ceil(footerRect.width / binSize) + 1);
+            if (footerBins.length !== numBins) {
+                const oldBins = footerBins;
+                footerBins = new Array(numBins).fill(0);
+                for (let b = 0; b < numBins; b++) {
+                    footerBins[b] = (oldBins && oldBins[b]) ? oldBins[b] : 0;
+                }
+            }
+        }
+
+        const edgeMargin = 22; // Edge boundary zone for slope gravity & falling
+
+        // 1. Update and draw falling background particles
         for (let i = 0; i < maxParticles; i++) {
             const p = particles[i];
 
@@ -217,16 +245,121 @@
             snowCtx.fill();
 
             p.y += p.d;
-            p.x += Math.sin(p.y / 30) * 0.5;
+            p.sway += p.swaySpeed;
+            p.x += Math.sin(p.sway) * 0.6;
 
-            if (p.y > snowCanvas.height || p.x > snowCanvas.width || p.x < 0) {
+            let targetY = snowCanvas.height + 15;
+            let isOnFooter = false;
+            let binIdx = -1;
+
+            if (footerRect && footerRect.top < snowCanvas.height && footerRect.bottom > 0) {
+                if (p.x >= footerRect.left && p.x <= footerRect.right) {
+                    binIdx = Math.floor((p.x - footerRect.left) / binSize);
+                    binIdx = Math.max(0, Math.min(numBins - 1, binIdx));
+                    const currentPile = footerBins[binIdx] || 0;
+                    targetY = footerRect.top - currentPile;
+                    isOnFooter = true;
+                }
+            }
+
+            if (p.y >= targetY) {
+                if (isOnFooter && binIdx >= 0) {
+                    const distLeft = p.x - footerRect.left;
+                    const distRight = footerRect.right - p.x;
+                    const isNearEdge = distLeft < edgeMargin || distRight < edgeMargin;
+
+                    const currentPile = footerBins[binIdx] || 0;
+                    if (!isNearEdge && currentPile < maxPileHeight) {
+                        footerBins[binIdx] += p.r * 0.4;
+                        if (binIdx > 0 && footerBins[binIdx - 1] < maxPileHeight) {
+                            footerBins[binIdx - 1] += p.r * 0.2;
+                        }
+                        if (binIdx < numBins - 1 && footerBins[binIdx + 1] < maxPileHeight) {
+                            footerBins[binIdx + 1] += p.r * 0.2;
+                        }
+                    }
+
+                    if (landedFlakes.length < 300) {
+                        let initVx = 0;
+                        let startsFalling = false;
+
+                        if (distLeft < edgeMargin) {
+                            initVx = -((edgeMargin - distLeft) / edgeMargin) * 0.8 - 0.3;
+                            startsFalling = distLeft < 6;
+                        } else if (distRight < edgeMargin) {
+                            initVx = ((edgeMargin - distRight) / edgeMargin) * 0.8 + 0.3;
+                            startsFalling = distRight < 6;
+                        }
+
+                        landedFlakes.push({
+                            relX: (p.x - footerRect.left) / (footerRect.width || 1),
+                            relY: -currentPile + (Math.random() * 2 - 1),
+                            vx: initVx,
+                            vy: startsFalling ? Math.random() * 0.5 + 0.3 : 0,
+                            isFalling: startsFalling,
+                            r: p.r,
+                            o: Math.min(0.95, p.o + 0.15)
+                        });
+                    }
+                }
+
                 particles[i] = {
                     x: Math.random() * snowCanvas.width,
                     y: -10,
-                    r: p.r,
-                    d: p.d,
-                    o: p.o
+                    r: Math.random() * 2.5 + 1,
+                    d: Math.random() * 1.2 + 0.6,
+                    o: Math.random() * 0.8 + 0.2,
+                    sway: Math.random() * Math.PI * 2,
+                    swaySpeed: Math.random() * 0.03 + 0.01
                 };
+            }
+        }
+
+        // 2. Physics update & render for landed and edge-sliding snow flakes
+        if (footerRect && footerRect.top < snowCanvas.height && footerRect.bottom > 0) {
+            const footerW = footerRect.width || 1;
+
+            for (let k = landedFlakes.length - 1; k >= 0; k--) {
+                const lf = landedFlakes[k];
+                const lx = footerRect.left + lf.relX * footerW;
+
+                if (!lf.isFalling) {
+                    const distLeft = lx - footerRect.left;
+                    const distRight = footerRect.right - lx;
+
+                    if (distLeft < edgeMargin) {
+                        const slopeForce = (edgeMargin - distLeft) / edgeMargin;
+                        lf.vx -= slopeForce * 0.18;
+                    } else if (distRight < edgeMargin) {
+                        const slopeForce = (edgeMargin - distRight) / edgeMargin;
+                        lf.vx += slopeForce * 0.18;
+                    } else {
+                        lf.vx *= 0.88;
+                    }
+
+                    lf.relX += lf.vx / footerW;
+
+                    const newLx = footerRect.left + lf.relX * footerW;
+                    if (newLx < footerRect.left - 2 || newLx > footerRect.right + 2) {
+                        lf.isFalling = true;
+                        lf.vy = Math.random() * 0.5 + 0.4;
+                    }
+                } else {
+                    lf.vy += 0.2; // Gravity accelerating the snow off the edge
+                    lf.vx *= 0.98;
+                    lf.relX += lf.vx / footerW;
+                    lf.relY += lf.vy;
+
+                    if (footerRect.top + lf.relY > snowCanvas.height + 20) {
+                        landedFlakes.splice(k, 1);
+                        continue;
+                    }
+                }
+
+                snowCtx.beginPath();
+                snowCtx.arc(footerRect.left + lf.relX * footerW, footerRect.top + lf.relY, lf.r, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(255, 255, 255, ${lf.o})`;
+                snowCtx.fill();
             }
         }
 
@@ -241,6 +374,8 @@
         if (snowCanvas && snowCtx) {
             snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
         }
+        footerBins = [];
+        landedFlakes = [];
         window.removeEventListener("resize", resizeSnowCanvas);
     }
 
