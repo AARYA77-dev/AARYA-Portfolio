@@ -355,47 +355,32 @@
         smoothTouch: false,
     });
 
-    // Sync with GSAP
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    lenis.on('scroll', ScrollTrigger.update);
 
-    // Connect GSAP ScrollTrigger with Lenis
     gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
     });
 
     gsap.ticker.lagSmoothing(0);
 
-    // Check if animation has already run in this session
     const hasAnimated = sessionStorage.getItem("homeAnimated");
 
     if (!hasAnimated) {
         lenis.stop();
-        runHomeAnimation();
+        runHomeAnimation(); // <-- COMMENT THIS LINE TO DISABLE LOADING SCREEN
         sessionStorage.setItem("homeAnimated", "true");
     } else {
         document.body.classList.remove("animate-on-load");
         const loader = document.querySelector(".loader");
         if (loader) loader.remove();
+        lenis.start();
+        titleAnimation();
+        stackingAnimation();
     }
 
     function runHomeAnimation() {
         gsap.registerPlugin(CustomEase);
         gsap.registerPlugin(ScrollTrigger);
-
-        ScrollTrigger.scrollerProxy(document.body, {
-            scrollTop(value) {
-                return arguments.length
-                    ? lenis.scrollTo(value, { immediate: true })
-                    : lenis.scroll;
-            },
-            getBoundingClientRect() {
-                return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-            },
-        });
 
         CustomEase.create("hop", "0.22,1,0.36,1");
 
@@ -604,6 +589,21 @@
                 }
             );
         });
+
+
+        gsap.utils.toArray(".featured-card-home").forEach((image) => {
+            gsap.to(image.querySelector("img"), {
+                clipPath: "inset(0% 0%)",
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: image,
+                    start: "top 90%",
+                    end: "top 35%",
+                    scrub: true
+                }
+            });
+        });
     }
 
     const now = new Date();
@@ -615,17 +615,17 @@
     document.getElementById("time").textContent = time;
 
     function scrollToHero() {
-        document.getElementById("hero").scrollIntoView();
+        lenis.scrollTo("#hero");
     }
 
     function scrollToAbout(event) {
-        event.preventDefault();
-        lenis.scrollTo(document.getElementById("about"));
+        if (event) event.preventDefault();
+        lenis.scrollTo("#about");
     }
 
     function scrollToSkills(event) {
-        event.preventDefault();
-        lenis.scrollTo(document.getElementById("skills"));
+        if (event) event.preventDefault();
+        lenis.scrollTo("#skills");
     }
 
     setupMobileNav();
@@ -644,6 +644,12 @@
             menuToggle.innerHTML = open
                 ? '<i class="fa-solid fa-xmark"></i>'
                 : '<i class="fa-solid fa-bars"></i>';
+
+            if (open) {
+                lenis.stop();
+            } else {
+                lenis.start();
+            }
         }
 
         menuToggle.addEventListener("click", () => {
