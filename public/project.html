@@ -282,9 +282,7 @@
 
         if (img) {
             const rect = img.getBoundingClientRect();
-            if (rect.width > 0 && rect.height > 0 &&
-                rect.bottom >= 0 && rect.top <= window.innerHeight &&
-                rect.right >= 0 && rect.left <= window.innerWidth) {
+            if (rect.width > 0 && rect.height > 0) {
                 return {
                     x: rect.left + rect.width / 2,
                     y: rect.top + rect.height / 2
