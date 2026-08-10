@@ -1906,7 +1906,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 
 /* --- RENDERING OPTIMIZATIONS --- */
-.optimize-visibility {
+/* .optimize-visibility {
     content-visibility: auto;
 }
 
@@ -1929,10 +1929,10 @@ textarea::-webkit-scrollbar-thumb:hover {
 .optimize-footer {
     content-visibility: auto;
     contain-intrinsic-size: auto 150px;
-}
+} */
 
 /* Mobile adjustments */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .optimize-footer {
         contain-intrinsic-size: auto 260px;
     }
@@ -1951,7 +1951,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     #three-container.optimize-visibility {
         contain-intrinsic-size: auto 360px;
     }
-}
+} */
 
 @media (prefers-reduced-motion: reduce) {
 
