@@ -1324,10 +1324,17 @@ body:not(.dark) .featured-card-home {
     transition: transform 0.35s ease, filter 0.35s ease;
 }
 
-.featured-image img,
+.featured-image img {
+    width: 100%;
+    height: auto;
+}
+
 .project-icon img {
     width: 100%;
     height: auto;
+    border-radius: 14px;
+    aspect-ratio: 1895 / 912;
+    object-fit: cover;
 }
 
 .featured-card:hover .featured-image img,
@@ -1904,54 +1911,6 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
 }
 
-
-/* --- RENDERING OPTIMIZATIONS --- */
-/* .optimize-visibility {
-    content-visibility: auto;
-}
-
-#three-container.optimize-visibility {
-    contain-intrinsic-size: auto 450px;
-}
-
-.project-card.optimize-visibility {
-    contain-intrinsic-size: auto 500px;
-}
-
-.featured-card.optimize-visibility {
-    contain-intrinsic-size: auto 360px;
-}
-
-.featured-card-home.optimize-visibility {
-    contain-intrinsic-size: auto 360px;
-}
-
-.optimize-footer {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 150px;
-} */
-
-/* Mobile adjustments */
-/* @media (max-width: 768px) {
-    .optimize-footer {
-        contain-intrinsic-size: auto 260px;
-    }
-
-    .project-card.optimize-visibility {
-        contain-intrinsic-size: auto 350px;
-    }
-
-    .featured-card.optimize-visibility,
-    .featured-card-home.optimize-visibility {
-        contain-intrinsic-size: auto 420px;
-    }
-}
-
-@media (max-width: 600px) {
-    #three-container.optimize-visibility {
-        contain-intrinsic-size: auto 360px;
-    }
-} */
 
 @media (prefers-reduced-motion: reduce) {
 
