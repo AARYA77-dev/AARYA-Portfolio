@@ -998,21 +998,89 @@ body.dark .image-ring:hover {
 
 .skill-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
     width: 90%;
+    max-width: 1100px;
     margin: 0 auto 50px;
-    padding: 16px;
-    font-weight: 900;
-    background: #0f172a;
-    border-radius: 8px;
+    padding: 20px;
+    font-weight: 700;
+    background: #2041912e;
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius);
     color: #e5e7eb;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.skill-category {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px 14px;
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-3px);
+    border-color: rgba(96, 165, 250, 0.4);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.skill-category-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--feature-text-color);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+    letter-spacing: 0.5px;
+}
+
+.skill-category-header span {
+    color: inherit;
+}
+
+.skill-category-header i {
+    font-size: 14px;
+    color: var(--light-blue);
+}
+
+body:not(.dark) .skill-category {
+    background: rgba(37, 99, 235, 0.03);
+    border: 1px solid rgba(37, 99, 235, 0.14);
+}
+
+body:not(.dark) .skill-category:hover {
+    background: rgba(37, 99, 235, 0.07);
+    border-color: var(--primary-blue);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
+}
+
+body:not(.dark) .skill-category-header {
+    color: var(--primary-blue);
+    border-bottom-color: rgba(37, 99, 235, 0.18);
+}
+
+body:not(.dark) .skill-category-header i {
+    color: var(--primary-blue);
+}
+
+@media (max-width: 992px) {
+    .skill-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
 }
 
 @media (max-width: 600px) {
     .skill-list {
         grid-template-columns: 1fr;
-        padding: 12px;
+        padding: 14px;
+        gap: 14px;
     }
 }
 
