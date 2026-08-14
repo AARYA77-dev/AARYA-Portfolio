@@ -1702,6 +1702,68 @@ body.dark .social-icon:hover {
     transform: translateY(0);
 }
 
+/* ── Copyright Bar ────────────────────────────────── */
+.copyright-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+    padding: 24px 0 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.45);
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.copyright-text strong {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 700;
+}
+
+.copyright-made {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #e2e8f0;
+}
+
+.copyright-heart {
+    color: #f43f5e;
+    display: inline-block;
+}
+
+.copyright-html {
+    color: orange;
+    font-size: 15px;
+}
+
+.copyright-css {
+    color: var(--primary);
+    font-size: 15px;
+}
+
+.copyright-js {
+    color: #f7df1e;
+    font-size: 15px;
+}
+
+/* light mode */
+body:not(.dark) .copyright-bar {
+    border-top: 1px solid var(--line-light);
+    color: rgba(30, 41, 59, 0.5);
+}
+
+body:not(.dark) .copyright-text strong {
+    color: var(--primary-blue);
+}
+
+body:not(.dark) .copyright-made {
+    color: rgba(30, 41, 59, 0.45);
+}
+
+/* ── Contact Button ───────────────────────────────── */
 .contact-btn {
     position: relative;
     display: inline-flex;

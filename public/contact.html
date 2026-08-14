@@ -118,7 +118,18 @@
                 </a>
             </div>
         </div>
+        <div class="copyright-bar">
+            <span class="copyright-text">
+                &copy; <span id="copyright-year"></span> <strong>Aarya</strong>. All rights reserved.
+            </span>
+            <span class="copyright-made">
+                Made with <i class="fa-solid fa-heart copyright-heart"></i> using <i
+                    class="fa-brands fa-html5 copyright-html"></i> , <i class="fa-brands fa-css3-alt copyright-css"></i>
+                &amp; <i class="fa-brands fa-js copyright-js"></i>
+            </span>
+        </div>
     </footer>
+    <script>document.getElementById('copyright-year').textContent = new Date().getFullYear();</script>
 </body>
 <script>
     const now = new Date();
