@@ -546,23 +546,30 @@
         const cards = document.querySelectorAll(".stacking-card");
 
 
-        gsap.to("#hero",
-            {
+        // Unified Hero Scroll Out Animation
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.5,
+                fastScrollEnd: true,
+                pinSpacing: false,
+                invalidateOnRefresh: true,
+            }
+        })
+            .to("#hero", {
                 scale: 0.75,
                 opacity: 0,
-                scrollTrigger: {
-                    trigger: "#hero",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: 0.5,
-                    fastScrollEnd: true,
-                    pinSpacing: false,
-                    invalidateOnRefresh: true,
-                    scroller: document.body,
-                }
-            },
-
-        );
+                ease: "none",
+                force3D: true
+            }, 0)
+            .to(".image-ring", {
+                scale: 0.2,
+                opacity: 0,
+                ease: "none",
+                force3D: true
+            }, 0);
 
         cards.forEach((card, index) => {
             gsap.fromTo(
