@@ -8,6 +8,7 @@
         content="Need a modern website or software? Contact Aarya for freelance software development services and collaborations." />
     <link rel="canonical" href="https://aarya-dev.web.app/contact.html">
     <title>AARYA | CONTACT</title>
+    <script>if (sessionStorage.getItem("transition")) document.documentElement.classList.add("page-transitioning");</script>
     <meta property="og:title" content="Contact Aarya | Full Stack Web Developer">
     <meta property="og:description"
         content="Need a modern website or software? Contact Aarya for freelance software development services and collaborations.">
@@ -16,8 +17,10 @@
     <link rel="icon" type="image/x-icon" href="aarya.webp" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="page-transition.js" defer></script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,6 +33,14 @@
 </head>
 
 <body>
+    <div class="transition-container from-left" aria-hidden="true">
+        <span class="tile"></span>
+        <span class="tile"></span>
+        <span class="tile"></span>
+        <span class="tile"></span>
+        <span class="tile"></span>
+        <span class="tile"></span>
+    </div>
     <canvas class="snow-container" id="snow-canvas"></canvas>
     <header>
         <input type="checkbox" id="toggle" class="darkModeInput">

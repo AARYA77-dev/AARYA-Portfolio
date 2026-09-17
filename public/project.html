@@ -8,6 +8,7 @@
         content="Explore my portfolio of development projects including web applications, mobile apps, and software solutions." />
     <link rel="canonical" href="https://aarya-dev.web.app/project.html">
     <title>AARYA | PROJECTS</title>
+    <script>if (sessionStorage.getItem("transition")) document.documentElement.classList.add("page-transitioning");</script>
     <meta property="og:title" content="Projects | Aarya Portfolio">
     <meta property="og:description"
         content="Explore my portfolio of development projects including web applications, mobile apps, and software solutions.">
@@ -16,6 +17,8 @@
     <link rel="icon" type="image/x-icon" href="aarya.webp" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="page-transition.js" defer></script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,6 +31,14 @@
 </head>
 
 <body>
+    <div class="transition-container from-left" aria-hidden="true">
+        <span class="tile"></span>
+        <span class="tile"></span>
+        <span class="tile"></span>
+        <span class="tile"></span>
+        <span class="tile"></span>
+        <span class="tile"></span>
+    </div>
     <header>
         <input type="checkbox" id="toggle" class="darkModeInput">
         <nav class="nav">
