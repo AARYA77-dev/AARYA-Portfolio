@@ -47,6 +47,7 @@ body {
     padding: 16px;
     overscroll-behavior: none;
     min-height: 100vh;
+    cursor: url(cursor.svg) 12 12, auto;
 }
 
 body.animate-on-load {
