@@ -151,7 +151,8 @@
                 </div>
             </div>
             <div class="image-ring">
-                <img src="aarya.webp" alt="Aarya" fetchpriority="high" loading="eager" decoding="async" width="350" height="350">
+                <img src="aarya.webp" alt="Aarya" fetchpriority="high" loading="eager" decoding="async" width="350"
+                    height="350">
             </div>
         </section>
         <section id="about" class="grid stacking-card">
@@ -170,8 +171,8 @@
                             to do things. Fan of Gaming esports, outdoor activities and Web series.
                         </p>
                     </div>
-                    <img src="legoImage.jpg" alt="About Image" width="200" height="109" decoding="async" class="about-img"
-                        loading="lazy">
+                    <img src="legoImage.jpg" alt="About Image" width="200" height="109" decoding="async"
+                        class="about-img" loading="lazy">
                 </div>
             </div>
             <div class="card now">
@@ -255,8 +256,8 @@
         <section class="">
             <h2 class="project-maintitle animated-header">My Projects</h2>
             <div class="featured-card-home stacking-card">
-                <div class="featured-image"><img src="electronicWebsitePc.webp" loading="lazy" decoding="async" alt="image" width="1920"
-                        height="910">
+                <div class="featured-image"><img src="electronicWebsitePc.webp" loading="lazy" decoding="async"
+                        alt="image" width="1920" height="910">
                 </div>
                 <div>
                     <span class="badge">Web App</span>
@@ -286,8 +287,8 @@
                 </div>
             </div>
             <div class="featured-card-home stacking-card">
-                <div class="featured-image"><img src="family-management-app.webp" decoding="async" loading="lazy" alt="image"
-                        width="1847" height="962">
+                <div class="featured-image"><img src="family-management-app.webp" decoding="async" loading="lazy"
+                        alt="image" width="1847" height="962">
                 </div>
                 <div>
                     <span class="badge">Web App</span>
@@ -410,6 +411,14 @@
         const loader = document.querySelector(".loader");
         if (loader) loader.remove();
         lenis.start();
+
+        // Ensure hero section is visible and properly positioned
+        gsap.set(".hero", { y: 0, opacity: 1 });
+        gsap.set(".nav", { y: 0, opacity: 1 });
+        gsap.set(".info-header", { y: 0, opacity: 1 });
+        gsap.set(".title", { y: 0, opacity: 1 });
+        gsap.set(".image-ring", { scale: 1, opacity: 1 });
+
         titleAnimation();
         stackingAnimation();
     }
