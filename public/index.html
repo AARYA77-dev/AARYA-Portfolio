@@ -549,12 +549,20 @@
 
         textEls.forEach((textEl) => {
 
-            const text = textEl.textContent;
+            const text = textEl.textContent || "";
+            const wordList = text.split(" ");
 
-            textEl.innerHTML = text
-                .split(" ")
-                .map(word => `<h2 class="word">${word}</h2>`)
-                .join(" ");
+            textEl.replaceChildren();
+            wordList.forEach((word, index) => {
+                const wordEl = document.createElement("h2");
+                wordEl.className = "word";
+                wordEl.textContent = word;
+                textEl.appendChild(wordEl);
+
+                if (index < wordList.length - 1) {
+                    textEl.appendChild(document.createTextNode(" "));
+                }
+            });
 
             const words = textEl.querySelectorAll(".word");
 
