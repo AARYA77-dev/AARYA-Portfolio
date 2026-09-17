@@ -318,7 +318,7 @@ h1 span {
 
 /* ICONS - ALWAYS CENTERED */
 
-svg {
+.darkModeLabel svg {
     width: 22px;
     position: absolute;
     top: 50%;
@@ -736,11 +736,12 @@ body:not(.dark) .resume-btn {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 100px 80px;
+    padding: 90px 80px 140px 80px;
     max-width: 1200px;
     margin: 0 auto;
-    min-height: 70vh;
+    min-height: calc(100vh - 160px);
     gap: 40px;
+    position: relative;
 }
 
 @media (max-width: 900px) {
@@ -752,8 +753,112 @@ body:not(.dark) .resume-btn {
     .hero {
         flex-direction: column-reverse;
         text-align: center;
-        padding: 60px 20px;
+        padding: 40px 16px 110px 16px;
+        min-height: auto;
         width: 100%;
+    }
+}
+
+/* --- HERO SCROLL BANNER ARROW --- */
+.banner-arrow-wrap {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: clamp(200px, 26vw, 360px);
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 10;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.banner-arrow-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    opacity: 0.5;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    animation: bannerArrowIdle 2.8s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.svg-arrow {
+    fill: transparent;
+    stroke: #2C2C2C;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 477.505;
+    stroke-dashoffset: 0;
+    transition: stroke 0.3s ease, fill 0.3s ease, stroke-width 0.3s ease;
+}
+
+.svg-arrow {
+    stroke: #60a5fa;
+}
+
+.banner-arrow-wrap:hover .banner-arrow-svg {
+    transform: translateY(18px);
+    filter: drop-shadow(0 8px 16px rgba(37, 99, 235, 0.28));
+}
+
+.banner-arrow-wrap:hover .svg-arrow {
+    stroke: var(--primary-blue, #2563eb);
+    stroke-width: 2;
+    fill: rgba(37, 99, 235, 0.08);
+}
+
+body.dark .banner-arrow-wrap:hover .svg-arrow {
+    stroke: #93c5fd;
+    stroke-width: 2;
+    fill: rgba(96, 165, 250, 0.12);
+}
+
+/* Active press */
+.banner-arrow-wrap:active .banner-arrow-svg {
+    transform: translateY(24px) scale(0.97);
+    transition-duration: 0.15s;
+}
+
+/* Idle gentle bob animation */
+@keyframes bannerArrowIdle {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+}
+
+/* Hover downward pulse animation */
+@keyframes bannerArrowHoverPulse {
+    0% {
+        transform: translateY(7px);
+    }
+
+    50% {
+        transform: translateY(18px);
+    }
+
+    100% {
+        transform: translateY(7px);
+    }
+}
+
+@media (max-width: 900px) {
+    .banner-arrow-wrap {
+        bottom: 12px;
+        width: clamp(160px, 42vw, 220px);
     }
 }
 

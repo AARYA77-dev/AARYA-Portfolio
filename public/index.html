@@ -154,6 +154,15 @@
                 <img src="aarya.webp" alt="Aarya" fetchpriority="high" loading="eager" decoding="async" width="350"
                     height="350">
             </div>
+            <a href="#about" id="banner-arrow-link" class="banner-arrow-wrap" onclick="scrollToAbout(event)"
+                aria-label="Scroll down to About section">
+                <svg id="banner-arrow-svg" width="376" height="111" viewBox="0 0 376 111" fill="transparent"
+                    xmlns="http://www.w3.org/2000/svg" class="banner-arrow-svg">
+                    <path class="svg-arrow svg-arrow-1" d="M1 1V39.9286L188 110V70.6822L1 1Z" stroke="#2C2C2C"></path>
+                    <path class="svg-arrow svg-arrow-2" d="M375 1V39.9286L188 110V70.6822L375 1Z" stroke="#2C2C2C">
+                    </path>
+                </svg>
+            </a>
         </section>
         <section id="about" class="grid stacking-card">
             <div class="card about">
@@ -418,6 +427,7 @@
         gsap.set(".info-header", { y: 0, opacity: 1 });
         gsap.set(".title", { y: 0, opacity: 1 });
         gsap.set(".image-ring", { scale: 1, opacity: 1 });
+        gsap.set(".banner-arrow-wrap", { y: 0, opacity: 1 });
 
         titleAnimation();
         stackingAnimation();
@@ -612,6 +622,12 @@
             .to(".image-ring", {
                 scale: 0.2,
                 opacity: 0,
+                ease: "none",
+                force3D: true
+            }, 0)
+            .to(".banner-arrow-wrap", {
+                opacity: 0,
+                y: 40,
                 ease: "none",
                 force3D: true
             }, 0);
