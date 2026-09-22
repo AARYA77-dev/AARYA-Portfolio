@@ -735,6 +735,14 @@ body:not(.dark) .resume-btn {
     font-size: 28px;
 }
 
+#about {
+    scroll-margin-top: calc(62px + 57px + 20px);
+}
+
+#skills {
+    scroll-margin-top: calc(62px + 50px);
+}
+
 
 /* --- HERO SECTION --- */
 .hero {
