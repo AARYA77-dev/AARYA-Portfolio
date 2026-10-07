@@ -10,6 +10,14 @@
       {
         "source": "/projects",
         "destination": "/project.html"
+      },
+      {
+        "source": "/contact",
+        "destination": "/contact.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   }
