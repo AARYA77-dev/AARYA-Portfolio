@@ -60,7 +60,7 @@ body.animate-on-load {
 }
 
 html {
-    scroll-behavior: smmooth;
+    scroll-behavior: smooth;
     scrollbar-gutter: stable;
 }
 
