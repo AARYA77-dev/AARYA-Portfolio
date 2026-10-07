@@ -1,0 +1,18 @@
+{
+  "name": "Aarya | Full Stack Web Developer",
+  "short_name": "Aarya Portfolio",
+  "description": "Portfolio of Aarya, a Full Stack Developer",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#2C2C2C",
+  "theme_color": "#2563eb",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "aarya.webp",
+      "sizes": "350x350",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}
